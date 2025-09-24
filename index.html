@@ -3,235 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SetHubble: Экономическая Машина для Вашего Бизнеса</title>
+    
+    <!-- === SEO-БЛОК: НАЧАЛО === -->
+    <title>SetHubble: Конструктор Вирусных Партнерских Программ с API</title>
+    <meta name="description" content="Узнайте, как создать свою многоуровневую партнерскую программу на SetHubble. Принимайте крипто-платежи, используйте API для автоматизации и уникальные механики, чтобы обойти конкурентов. Полный обзор и отзывы здесь.">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <!-- === SEO-БЛОК: КОНЕЦ === -->
+
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
         
-        /* --- Цветовая палитра и переменные --- */
         :root {
-            --primary-color: #4A90E2;
-            --secondary-color: #50E3C2;
-            --accent-color: #F5A623;
-            --text-color: #E0E0E0;
-            --dark-text-color: #121212;
-            --bg-color: #0d0d1a; /* Глубокий космос */
-            --card-bg: rgba(22, 22, 38, 0.85);
-            --plan-bg: #161626;
-            --plan-border: #333355;
+            --primary-color: #4A90E2; --secondary-color: #50E3C2; --accent-color: #F5A623; --problem-color: #e94560;
+            --text-color: #E0E0E0; --dark-text-color: #121212; --bg-color: #0d0d1a;
+            --card-bg: rgba(22, 22, 38, 0.85); --plan-bg: #161626; --plan-border: #333355;
         }
+        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: var(--text-color); }
+        .container { padding: 60px 20px; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        .main-box { max-width: 1100px; margin: 40px auto; background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 25px; padding: 50px; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); animation: fadeInScale 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
+        @keyframes fadeInScale { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
         
-        /* --- Базовые стили --- */
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--bg-color);
-            margin: 0;
-            padding: 0;
-            color: var(--text-color);
-        }
-
-        .container {
-            padding: 60px 20px;
-        }
-
-        * { 
-            box-sizing: border-box; 
-            margin: 0;
-            padding: 0;
-        }
-        
-        .main-box {
-            max-width: 1100px;
-            margin: 40px auto;
-            background: var(--card-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 25px;
-            padding: 50px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            animation: fadeInScale 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
-        }
-        
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: translateY(20px) scale(0.98); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        
-        /* --- Стили секций --- */
         .header { text-align: center; margin-bottom: 70px; }
-        .header h1 { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 3.8em; 
-            font-weight: 900; 
-            line-height: 1.2; 
-            color: var(--text-color); 
-            background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
-            background-clip: text; 
-            text-shadow: 0 5px 30px rgba(80, 227, 194, 0.2); 
-        }
-        .header .subtitle { 
-            font-size: 1.5em; 
-            color: #b0b0d0; 
-            max-width: 800px; 
-            margin: 25px auto 0; 
-            line-height: 1.7; 
-            font-weight: 300; 
-        }
+        .header h1 { font-family: 'Montserrat', sans-serif; font-size: 3.8em; font-weight: 900; line-height: 1.2; color: var(--text-color); background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 5px 30px rgba(80, 227, 194, 0.2); }
+        .header .subtitle { font-size: 1.5em; color: #b0b0d0; max-width: 800px; margin: 25px auto 0; line-height: 1.7; font-weight: 300; }
         
-        .section { margin-bottom: 70px; }
-        .section-title { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 2.8em; 
-            text-align: center; 
-            margin-bottom: 50px; 
-            position: relative; 
-            padding-bottom: 15px; 
-            color: var(--text-color); 
-        }
-        .section-title::after { 
-            content: ''; 
-            position: absolute; 
-            bottom: 0; 
-            left: 50%; 
-            transform: translateX(-50%); 
-            width: 120px; 
-            height: 4px; 
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); 
-            border-radius: 2px; 
-        }
+        .section { margin-bottom: 80px; }
+        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.8em; text-align: center; margin-bottom: 50px; position: relative; padding-bottom: 15px; color: var(--text-color); }
+        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 4px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); border-radius: 2px; }
         
-        /* --- Стили карточек и нового эффекта подчеркивания --- */
-        .highlight-underline {
-            background-image: linear-gradient(var(--secondary-color), var(--primary-color));
-            background-repeat: no-repeat;
-            background-position: 0 100%;
-            background-size: 0 3px; /* Изначально подчеркивание невидимо */
-            transition: background-size 0.4s ease-in-out;
-            padding-bottom: 2px;
-        }
+        .highlight-underline { background-image: linear-gradient(var(--secondary-color), var(--primary-color)); background-repeat: no-repeat; background-position: 0 100%; background-size: 0 3px; transition: background-size 0.4s ease-in-out; padding-bottom: 2px; }
         
-        .mechanics-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-        }
-        .mechanic-card { 
-            background: var(--plan-bg); 
-            border: 1px solid var(--plan-border); 
-            border-left: 5px solid var(--accent-color);
-            border-radius: 15px; 
-            padding: 30px; 
-            transition: all 0.3s ease; 
-        }
-        .mechanic-card:hover { 
-            transform: translateY(-8px); 
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); 
-            border-color: var(--accent-color);
-        }
-        .mechanic-card .icon { font-size: 3.5em; margin-bottom: 20px; color: var(--accent-color); }
-        .mechanic-card h3 { 
-            font-family: 'Montserrat', sans-serif; 
-            color: var(--accent-color); 
-            margin-bottom: 15px; 
-            font-size: 1.5em; 
-        }
-        .mechanic-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; }
+        .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        .problem-card { background: rgba(233, 69, 96, 0.05); border: 1px solid rgba(233, 69, 96, 0.15); border-left: 5px solid var(--problem-color); border-radius: 15px; padding: 30px; transition: all 0.3s ease; }
+        .problem-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); }
+        .problem-card h3 { font-family: 'Montserrat', sans-serif; color: var(--problem-color); margin-bottom: 15px; font-size: 1.5em; }
+        .problem-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; }
 
-        /* Активация подчеркивания при наведении на карточку */
-        .mechanic-card:hover .highlight-underline {
-            background-size: 100% 3px;
-        }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+        .feature-card { background: var(--plan-bg); border: 1px solid var(--plan-border); border-radius: 15px; padding: 30px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .feature-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); border-color: var(--primary-color); }
+        .feature-card .icon { font-size: 3.5em; margin-bottom: 20px; color: var(--primary-color); }
+        .feature-card h3 { font-family: 'Montserrat', sans-serif; color: var(--text-color); margin-bottom: 15px; font-size: 1.5em; }
+        .feature-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; flex-grow: 1; }
 
-        .income-stream-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
-        .income-card { 
-            background: var(--plan-bg); 
-            border-radius: 15px; 
-            padding: 30px; 
-            border: 1px solid var(--plan-border); 
-            display: flex; 
-            align-items: center; 
-            gap: 30px; 
-            transition: all 0.3s ease; 
-        }
-        .income-card:hover { border-color: var(--secondary-color); transform: translateX(5px); }
-        .income-card .icon { font-size: 4em; color: var(--secondary-color); flex-shrink: 0; width: 80px; text-align: center; }
-        .income-card h3 { 
-            font-family: 'Montserrat', sans-serif; 
-            color: var(--text-color); 
-            margin-bottom: 10px; 
-            font-size: 1.6em; 
-        }
-        .income-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; }
+        .audience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
+        .audience-card { background: var(--plan-bg); border: 1px solid var(--plan-border); border-top: 4px solid var(--accent-color); border-radius: 15px; padding: 30px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; }
+        .audience-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); border-color: var(--accent-color); }
+        .audience-card .icon { font-size: 3.5em; margin-bottom: 20px; color: var(--accent-color); }
+        .audience-card h3 { font-family: 'Montserrat', sans-serif; color: var(--text-color); margin-bottom: 15px; font-size: 1.5em; }
+        .audience-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; flex-grow: 1; }
 
-        /* Активация подчеркивания при наведении на карточку */
-        .income-card:hover .highlight-underline {
-            background-size: 100% 3px;
+        .secret-weapon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .secret-weapon-card { background: rgba(245, 166, 35, 0.05); border: 1px solid rgba(245, 166, 35, 0.2); border-left: 5px solid var(--accent-color); border-radius: 15px; padding: 30px; transition: all 0.3s ease; }
+        .secret-weapon-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .secret-weapon-card .icon { font-size: 2.5em; margin-bottom: 15px; color: var(--accent-color); }
+        .secret-weapon-card h3 { font-family: 'Montserrat', sans-serif; color: var(--accent-color); margin-bottom: 15px; font-size: 1.5em; }
+        .secret-weapon-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; }
+        .secret-weapon-card:hover .highlight-underline { background-size: 100% 3px; }
+
+        /* === НОВЫЕ СТИЛИ для отделенного FAQ === */
+        .faq-section-wrapper { 
+            max-width: 1100px;
+            margin: 80px auto 0;
         }
+        .faq-item { background: var(--plan-bg); border-radius: 12px; margin-bottom: 15px; border: 1px solid var(--plan-border); transition: border-color 0.3s; }
+        .faq-item:hover { border-color: var(--primary-color); }
+        .faq-item details { padding: 25px; }
+        .faq-item summary { font-weight: 700; font-size: 1.3em; cursor: pointer; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 2em; line-height: 1; transition: transform 0.3s; color: var(--primary-color); }
+        .faq-item details[open] summary::after { transform: rotate(45deg); }
+        .faq-item .faq-answer { padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--plan-border); color: #b0b0d0; line-height: 1.8; }
         
-        .cta-section { 
-            background: rgba(80, 227, 194, 0.05); 
-            padding: 50px; 
-            border-radius: 20px; 
-            text-align: center; 
-            margin-top: 50px; 
-            border: 1px solid rgba(80, 227, 194, 0.2); 
-        }
-        .cta-section h2 { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 2.5em; 
-            color: var(--secondary-color); 
-            margin-bottom: 25px; 
-            text-shadow: 0 0 20px rgba(80, 227, 194, 0.5); 
-        }
-        .main-cta-button { 
-            display: inline-block; 
-            background: linear-gradient(45deg, var(--secondary-color), #29bda1); 
-            color: var(--dark-text-color); 
-            padding: 20px 50px; 
-            text-decoration: none; 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 1.5em; 
-            font-weight: 700; 
-            border-radius: 50px; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 15px 30px rgba(80, 227, 194, 0.4); 
-            border: none; 
-            cursor: pointer; 
-        }
-        .main-cta-button:hover { 
-            transform: translateY(-8px) scale(1.05); 
-            box-shadow: 0 20px 40px rgba(80, 227, 194, 0.6); 
-        }
-        .cta-subtitle { 
-            display: block; 
-            margin-top: 25px; 
-            color: #9a9ab0; 
-            font-size: 1.1em;
-        }
-
-        .footer {
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            border-top: 1px solid var(--plan-border);
-            color: #777799;
-        }
-        .footer p {
-            margin-bottom: 10px;
-        }
-        .footer a {
-            color: #9a9ab0;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer a:hover {
-            color: var(--secondary-color);
-        }
+        .cta-section { background: rgba(80, 227, 194, 0.05); padding: 50px; border-radius: 20px; text-align: center; margin-top: 50px; border: 1px solid rgba(80, 227, 194, 0.2); }
+        .cta-section h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5em; color: var(--secondary-color); margin-bottom: 25px; text-shadow: 0 0 20px rgba(80, 227, 194, 0.5); }
+        .main-cta-button { display: inline-block; background: linear-gradient(45deg, var(--secondary-color), #29bda1); color: var(--dark-text-color); padding: 20px 50px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 1.5em; font-weight: 700; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 15px 30px rgba(80, 227, 194, 0.4); border: none; cursor: pointer; }
+        .main-cta-button:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 20px 40px rgba(80, 227, 194, 0.6); }
+        .cta-subtitle { display: block; margin-top: 25px; color: #9a9ab0; font-size: 1.1em; }
+        
+        .footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid var(--plan-border); color: #777799; }
+        .footer p { margin-bottom: 10px; }
+        .footer a { color: #9a9ab0; text-decoration: none; transition: color 0.3s; }
+        .footer a:hover { color: var(--secondary-color); }
         
         @media (max-width: 992px) { .main-box { padding: 40px; } .header h1 { font-size: 3em; } .header .subtitle { font-size: 1.3em; } }
-        @media (max-width: 768px) { .main-box { padding: 30px 20px; } .header h1 { font-size: 2.5em; } .section-title { font-size: 2.2em; } .income-card { flex-direction: column; text-align: center; gap: 20px; } .main-cta-button { font-size: 1.2em; padding: 18px 40px; } }
+        @media (max-width: 768px) { .main-box { padding: 30px 20px; } .header h1 { font-size: 2.5em; } .section-title { font-size: 2.2em; } .problem-grid, .secret-weapon-grid, .audience-grid { grid-template-columns: 1fr; } .main-cta-button { font-size: 1.2em; padding: 18px 40px; } }
     </style>
 </head>
 <body>
@@ -239,75 +96,153 @@
     <div class="container">
         <div class="main-box">
             <header class="header">
-                <h1>Как Заставить Ваших Конкурентов Приносить Вам Доход?</h1>
-                <p class="subtitle">Перестаньте просто продавать свой продукт. Постройте вокруг него саморастущую экономическую машину, которая работает 24/7. SetHubble — это не просто партнерка, это ваш личный Монетный Двор.</p>
+                <h1>Конструктор Вирусных Партнерских Программ</h1>
+                <p class="subtitle">Запустите собственную партнерскую сеть бесплатно и платите партнерам, а не платформам.</p>
             </header>
+            
+            <section class="section">
+                <h2 class="section-title">Старые Правила Больше Не Работают</h2>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <h3>Высокие Комиссии и Задержки</h3>
+                        <p>Классические партнерские сети забирают львиную долю прибыли, а ваши партнеры ждут выплат месяцами, теряя мотивацию.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>Одноуровневая Система</h3>
+                        <p>Ваши партнеры могут только продавать. Они не могут строить свои команды, что ограничивает ваш рост одним уровнем.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>"Утечка" Клиентов</h3>
+                        <p>Вы платите за рекламу, чтобы привести клиента на чужой сервис оплаты, и этот сервис забирает вашего клиента себе. Вы строите бизнес для них.</p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>Гео-Ограничения</h3>
+                        <p>Привлечь партнеров из других стран и платить им — настоящая головная боль из-за ограничений банковских систем.</p>
+                    </div>
+                </div>
+            </section>
 
             <section class="section">
-                <h2 class="section-title">Три Скрытые Механики Роста</h2>
-                <div class="mechanics-grid">
-                    <div class="mechanic-card">
-                        <div class="icon">🚀</div>
-                        <h3>Механика №1: "Авто-Рекрутер"</h3>
-                        <p>Каждый ваш клиент после покупки автоматически получает предложение стать вашим партнером. Ваша клиентская база <span class="highlight-underline">сама превращается в вашу армию продавцов</span>, без единого лишнего действия с вашей стороны.</p>
+                <h2 class="section-title">Новый Стандарт Партнерского Маркетинга</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="icon">🕸️</div>
+                        <h3>Многоуровневые Программы</h3>
+                        <p>Создавайте партнерские программы глубиной до 10 уровней. Мотивируйте партнеров не просто продавать, а строить свои команды.</p>
                     </div>
-                    <div class="mechanic-card">
+                    <div class="feature-card">
+                        <div class="icon">💸</div>
+                        <h3>Мгновенные Авто-Выплаты</h3>
+                        <p>Партнеры получают вознаграждение на свои крипто-кошельки сразу после продажи. Никаких ручных выплат и месячных ожиданий.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🚀</div>
+                        <h3>Клиенты → Партнеры</h3>
+                        <p>Включите опцию, и каждый ваш покупатель автоматически получит предложение стать вашим партнером. Ваша армия продавцов растет с каждой продажей.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🌍</div>
+                        <h3>Глобальный Охват</h3>
+                        <p>Принимайте платежи и выплачивайте вознаграждения в криптовалюте по всему миру без ограничений и блокировок.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">🔌</div>
+                        <h3>Интеграция по API</h3>
+                        <p>Автоматизируйте всё: от доставки товаров до синхронизации с вашей CRM. Встройте SetHubble в любую вашу систему.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="icon">📊</div>
+                        <h3>Полный Контроль</h3>
+                        <p>Управляйте вашей сетью из многофункционального офиса. Отслеживайте доходы и анализируйте продажи в реальном времени.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2 class="section-title">Для Кого Этот Конструктор?</h2>
+                <div class="audience-grid">
+                     <div class="audience-card">
+                        <div class="icon">👨‍🏫</div>
+                        <h3>Авторов и Инфобизнесменов</h3>
+                        <p>Которые хотят создать собственную, независимую партнерскую сеть и перестать зависеть от дорогих сервисов.</p>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">🧑‍🤝‍🧑</div>
+                        <h3>Сетевых Лидеров</h3>
+                        <p>Которые ищут более гибкую и мощную платформу для своих команд с бинарной системой и мгновенными выплатами.</p>
+                    </div>
+                    <div class="audience-card">
                         <div class="icon">🎯</div>
-                        <h3>Механика №2: "Цифровой Капкан"</h3>
+                        <h3>Маркетологов и Рекламодателей</h3>
+                        <p>Которые устали "сливать бюджеты" и хотят платить только за реальные продажи, а не за клики и показы.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2 class="section-title">Ваше "Секретное Оружие"</h2>
+                <p class="subtitle" style="font-size: 1.3em; margin-top: -30px; margin-bottom: 40px;">Помимо стандартных функций, вы получаете два несравненных преимущества:</p>
+                <div class="secret-weapon-grid">
+                    <div class="secret-weapon-card">
+                        <div class="icon">🎯</div>
+                        <h3>"Цифровой Капкан"</h3>
                         <p>Любой, кто коснулся вашей ссылки, <span class="highlight-underline">навечно попадает в вашу структуру</span> на 4 месяца. Даже если он уйдет и вернется на платформу через чужую рекламу. Ваши усилия больше никогда не пропадают.</p>
                     </div>
-                    <div class="mechanic-card">
+                    <div class="secret-weapon-card">
                         <div class="icon">👑</div>
-                        <h3>Механика №3: "Налог с Конкурентов"</h3>
+                        <h3>"Налог с Конкурентов"</h3>
                         <p>Благодаря "Капкану", ваш конкурент, продающий свои курсы через SetHubble, становится частью вашей структуры. Вы начинаете получать <span class="highlight-underline">пассивный доход с его продаж</span>. Он работает — вы зарабатываете.</p>
                     </div>
                 </div>
             </section>
 
-            <section class="section">
-                <h2 class="section-title">Три Потока Вашего Дохода</h2>
-                <div class="income-stream-grid">
-                    <div class="income-card">
-                        <div class="icon">📈</div>
-                        <div>
-                            <h3>Поток №1: Активный Доход с Продаж</h3>
-                            <p>Получайте комиссию с продаж продуктов в вашей <span class="highlight-underline">10-уровневой партнерской сети</span>. Это ваш основной, активный двигатель дохода, который строит "Авто-Рекрутер".</p>
-                        </div>
-                    </div>
-                    <div class="income-card">
-                        <div class="icon">💸</div>
-                        <div>
-                            <h3>Поток №2: Пассивный Доход с Апгрейдов</h3>
-                            <p>Когда партнеры в вашей сети покупают платные тарифы, вы получаете до 40% комиссии. Ваша сеть начинает <span class="highlight-underline">монетизировать сама себя</span>, принося доход даже без продаж.</p>
-                        </div>
-                    </div>
-                     <div class="income-card">
-                        <div class="icon">🌍</div>
-                        <div>
-                            <h3>Поток №3: Глобальные Бонусы и Реклама</h3>
-                            <p>Получайте бонусы с оборота ВСЕЙ платформы через Бинарную систему. Ваш продукт <span class="highlight-underline">вирусно и бесплатно рекламируется</span> среди тысяч лидеров каждый раз, когда за его продажу начисляются баллы.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
             <section class="cta-section">
-                <h2>Готовы Построить Свою Империю?</h2>
+                <h2>Готовы Запустить Свой Движок?</h2>
                 <!-- 
                     ВАЖНО: Эта ссылка будет работать только после настройки редиректа на Netlify.
                     Создайте в корневой папке вашего проекта файл с именем `_redirects` (без расширения)
                     и добавьте в него строку:
                     /start    https://sethubble.com/ru/p_qdr?ref=YOUR_LOGIN    301
                 -->
-                <a href="/start" target="_blank" class="main-cta-button">Получить Бесплатный Доступ</a>
+                <a href="/start" target="_blank" class="main-cta-button">Получить Бесплатный Доступ к Конструктору</a>
                 <p class="cta-subtitle">Регистрация бесплатна и ни к чему не обязывает, но она навсегда "застолбит" ваше место в глобальной системе.</p>
             </section>
-        </div>
+
+        </div> <!-- === КОНЕЦ .main-box === -->
+
+        <!-- === НОВЫЙ БЛОК: FAQ теперь находится снаружи === -->
+        <section class="faq-section-wrapper">
+             <h2 class="section-title">Ответы на Главные Вопросы</h2>
+             <div class="faq-item">
+                <details>
+                    <summary>Это не финансовая пирамида?</summary>
+                    <div class="faq-answer">
+                        <p>Нет. В пирамидах доход генерируется за счет взносов новых участников. В SetHubble доход генерируется **исключительно от реальных продаж** товаров и услуг. Платформа — это просто технология, инструмент для организации партнерского маркетинга, как у Amazon или любого другого маркетплейса, только гораздо мощнее.</p>
+                    </div>
+                </details>
+            </div>
+             <div class="faq-item">
+                <details>
+                    <summary>Криптовалюта — это сложно и опасно?</summary>
+                    <div class="faq-answer">
+                        <p>Уже нет. Сегодня создать кошелек и получать на него USDT (цифровой доллар) так же просто, как зарегистрировать Qiwi или PayPal. Для ваших партнеров это означает мгновенные выплаты без банковских ограничений, а для вас — возможность строить международную команду без головной боли.</p>
+                    </div>
+                </details>
+            </div>
+             <div class="faq-item">
+                <details>
+                    <summary>Насколько это сложно настроить?</summary>
+                    <div class="faq-answer">
+                        <p>Базовая настройка занимает не более 15 минут. Вы добавляете продукт, устанавливаете проценты для партнеров и получаете готовую ссылку. Вся сложная механика (отслеживание, выплаты, бинар) работает "под капотом" полностью автоматически.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
 
         <footer class="footer">
             <p>Этот сайт является ресурсом независимого партнера и не является официальным сайтом компании SetHubble.</p>
             <p>Информация предоставлена в ознакомительных целях для демонстрации ключевых преимуществ платформы.</p>
-            <p><a href="/start" target="_blank">Перейти на официальный сайт SetHubble</a></p>
+            <p><a href="https://sethubble.com/ru/p_qdr" target="_blank">Перейти на официальный сайт SetHubble</a></p>
         </footer>
     </div>
 
