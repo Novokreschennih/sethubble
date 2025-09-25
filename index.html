@@ -628,7 +628,7 @@
             <section class="simulator">
                 <div class="simulator-header">
                     <h2>Симулятор Дохода Автора</h2>
-                    <p style="font-size: 1.2rem; color: var(--gray); margin-top: 20px;">Узнайте, почему глубокая партнерская сеть выгоднее, даже если вы отдаете партнерам больший процент. "Поиграйте" с параметрами и сравните ваш чистый доход за год.</p>
+                    <p style="font-size: 1.2rem; color: var(--gray); margin-top: 20px;">Узнайте, почему глубокая партнерская сеть выгоднее, даже если вы отдаете партнерам больший процент. "Поиграйте" с параметрами и сравните ваш чистый доход за год. Для примера сравним доход 2-х уровневой партнёрки 50% + 5% (общая выплата партнёрам 55%) и 5 уровневой партнёрки 50% + 5% + 5% + 5% +5% (общая выплата партнёрам 70%)</p>
                 </div>
                 
                 <div class="controls-grid">
@@ -666,7 +666,7 @@
                             <div class="value" id="sethubbleTotalPartners">0</div>
                         </div>
                         <div class="result-item">
-                            <div class="label">Выплаты партнерам (5 ур: 50%+4x7%)</div>
+                            <div class="label">Выплаты партнерам (5 ур: 50%+4x5%)</div>
                             <div class="value" id="sethubbleTotalPayout">$0</div>
                         </div>
                         <div class="result-item income-item" id="sethubbleAuthorIncome">$0</div>
@@ -833,7 +833,7 @@
                 classicTotalPayoutElem.textContent = '$' + formatNumber(classicResults.totalPayout);
                 classicAuthorIncomeElem.textContent = '$' + formatNumber(classicResults.authorIncome);
 
-                const sethubbleCommissions = [0.50, 0.07, 0.07, 0.07, 0.07];
+                const sethubbleCommissions = [0.50, 0.05, 0.05, 0.05, 0.05];
                 const sethubbleResults = simulate(5, sethubbleCommissions);
                 sethubbleTotalPartnersElem.textContent = formatNumber(sethubbleResults.totalPartners);
                 sethubbleTotalPayoutElem.textContent = '$' + formatNumber(sethubbleResults.totalPayout);
