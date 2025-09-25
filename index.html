@@ -1,98 +1,539 @@
+```html
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- === SEO-БЛОК: НАЧАЛО === -->
     <title>SetHubble: Конструктор Вирусных Партнерских Программ с API</title>
     <meta name="description" content="Узнайте, как создать свою многоуровневую партнерскую программу на SetHubble. Принимайте крипто-платежи, используйте API для автоматизации и уникальные механики, чтобы обойти конкурентов. Полный обзор и отзывы здесь.">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    <!-- === SEO-БЛОК: КОНЕЦ === -->
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Roboto:wght@300;400;500;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
         
         :root {
-            --primary-color: #4A90E2; --secondary-color: #50E3C2; --accent-color: #F5A623; --problem-color: #e94560;
-            --text-color: #E0E0E0; --dark-text-color: #121212; --bg-color: #0d0d1a;
-            --card-bg: rgba(22, 22, 38, 0.85); --plan-bg: #161626; --plan-border: #333355;
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --gradient-start: #6366f1;
+            --gradient-end: #ec4899;
+            --dark: #0f172a;
+            --darker: #020617;
+            --darkest: #0a0e1b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --card-bg: rgba(15, 23, 42, 0.6);
+            --glass: rgba(10, 14, 27, 0.8);
+            --neon: #00f7ff;
+            --border: rgba(255, 255, 255, 0.1);
         }
-        body { font-family: 'Roboto', sans-serif; background-color: var(--bg-color); margin: 0; padding: 0; color: var(--text-color); }
-        .container { padding: 60px 20px; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        .main-box { max-width: 1100px; margin: 40px auto; background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-radius: 25px; padding: 50px; box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.1); animation: fadeInScale 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) forwards; }
-        @keyframes fadeInScale { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
         
-        .header { text-align: center; margin-bottom: 70px; }
-        .header h1 { font-family: 'Montserrat', sans-serif; font-size: 3.8em; font-weight: 900; line-height: 1.2; color: var(--text-color); background: linear-gradient(90deg, var(--secondary-color), var(--primary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 5px 30px rgba(80, 227, 194, 0.2); }
-        .header .subtitle { font-size: 1.5em; color: #b0b0d0; max-width: 800px; margin: 25px auto 0; line-height: 1.7; font-weight: 300; }
-        
-        .section { margin-bottom: 80px; }
-        .section-title { font-family: 'Montserrat', sans-serif; font-size: 2.8em; text-align: center; margin-bottom: 50px; position: relative; padding-bottom: 15px; color: var(--text-color); }
-        .section-title::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 4px; background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)); border-radius: 2px; }
-        
-        .highlight-underline { background-image: linear-gradient(var(--secondary-color), var(--primary-color)); background-repeat: no-repeat; background-position: 0 100%; background-size: 0 3px; transition: background-size 0.4s ease-in-out; padding-bottom: 2px; }
-        
-        .problem-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
-        .problem-card { background: rgba(233, 69, 96, 0.05); border: 1px solid rgba(233, 69, 96, 0.15); border-left: 5px solid var(--problem-color); border-radius: 15px; padding: 30px; transition: all 0.3s ease; }
-        .problem-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); }
-        .problem-card h3 { font-family: 'Montserrat', sans-serif; color: var(--problem-color); margin-bottom: 15px; font-size: 1.5em; }
-        .problem-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; }
-
-        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
-        .feature-card { background: var(--plan-bg); border: 1px solid var(--plan-border); border-radius: 15px; padding: 30px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; }
-        .feature-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); border-color: var(--primary-color); }
-        .feature-card .icon { font-size: 3.5em; margin-bottom: 20px; color: var(--primary-color); }
-        .feature-card h3 { font-family: 'Montserrat', sans-serif; color: var(--text-color); margin-bottom: 15px; font-size: 1.5em; }
-        .feature-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; flex-grow: 1; }
-
-        .audience-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 60px; }
-        .audience-card { background: var(--plan-bg); border: 1px solid var(--plan-border); border-top: 4px solid var(--accent-color); border-radius: 15px; padding: 30px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; }
-        .audience-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4); border-color: var(--accent-color); }
-        .audience-card .icon { font-size: 3.5em; margin-bottom: 20px; color: var(--accent-color); }
-        .audience-card h3 { font-family: 'Montserrat', sans-serif; color: var(--text-color); margin-bottom: 15px; font-size: 1.5em; }
-        .audience-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; flex-grow: 1; }
-
-        .secret-weapon-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-        .secret-weapon-card { background: rgba(245, 166, 35, 0.05); border: 1px solid rgba(245, 166, 35, 0.2); border-left: 5px solid var(--accent-color); border-radius: 15px; padding: 30px; transition: all 0.3s ease; }
-        .secret-weapon-card:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .secret-weapon-card .icon { font-size: 2.5em; margin-bottom: 15px; color: var(--accent-color); }
-        .secret-weapon-card h3 { font-family: 'Montserrat', sans-serif; color: var(--accent-color); margin-bottom: 15px; font-size: 1.5em; }
-        .secret-weapon-card p { color: #b0b0d0; line-height: 1.7; font-size: 1.1em; }
-        .secret-weapon-card:hover .highlight-underline { background-size: 100% 3px; }
-
-        /* === НОВЫЕ СТИЛИ для отделенного FAQ === */
-        .faq-section-wrapper { 
-            max-width: 1100px;
-            margin: 80px auto 0;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .faq-item { background: var(--plan-bg); border-radius: 12px; margin-bottom: 15px; border: 1px solid var(--plan-border); transition: border-color 0.3s; }
-        .faq-item:hover { border-color: var(--primary-color); }
-        .faq-item details { padding: 25px; }
-        .faq-item summary { font-weight: 700; font-size: 1.3em; cursor: pointer; color: var(--text-color); list-style: none; display: flex; justify-content: space-between; align-items: center; }
-        .faq-item summary::-webkit-details-marker { display: none; }
-        .faq-item summary::after { content: '+'; font-size: 2em; line-height: 1; transition: transform 0.3s; color: var(--primary-color); }
-        .faq-item details[open] summary::after { transform: rotate(45deg); }
-        .faq-item .faq-answer { padding-top: 20px; margin-top: 20px; border-top: 1px solid var(--plan-border); color: #b0b0d0; line-height: 1.8; }
         
-        .cta-section { background: rgba(80, 227, 194, 0.05); padding: 50px; border-radius: 20px; text-align: center; margin-top: 50px; border: 1px solid rgba(80, 227, 194, 0.2); }
-        .cta-section h2 { font-family: 'Montserrat', sans-serif; font-size: 2.5em; color: var(--secondary-color); margin-bottom: 25px; text-shadow: 0 0 20px rgba(80, 227, 194, 0.5); }
-        .main-cta-button { display: inline-block; background: linear-gradient(45deg, var(--secondary-color), #29bda1); color: var(--dark-text-color); padding: 20px 50px; text-decoration: none; font-family: 'Montserrat', sans-serif; font-size: 1.5em; font-weight: 700; border-radius: 50px; transition: all 0.3s ease; box-shadow: 0 15px 30px rgba(80, 227, 194, 0.4); border: none; cursor: pointer; }
-        .main-cta-button:hover { transform: translateY(-8px) scale(1.05); box-shadow: 0 20px 40px rgba(80, 227, 194, 0.6); }
-        .cta-subtitle { display: block; margin-top: 25px; color: #9a9ab0; font-size: 1.1em; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--darker), var(--darkest));
+            color: var(--light);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
         
-        .footer { text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 1px solid var(--plan-border); color: #777799; }
-        .footer p { margin-bottom: 10px; }
-        .footer a { color: #9a9ab0; text-decoration: none; transition: color 0.3s; }
-        .footer a:hover { color: var(--secondary-color); }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(99, 102, 241, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(236, 72, 153, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
         
-        @media (max-width: 992px) { .main-box { padding: 40px; } .header h1 { font-size: 3em; } .header .subtitle { font-size: 1.3em; } }
-        @media (max-width: 768px) { .main-box { padding: 30px 20px; } .header h1 { font-size: 2.5em; } .section-title { font-size: 2.2em; } .problem-grid, .secret-weapon-grid, .audience-grid { grid-template-columns: 1fr; } .main-cta-button { font-size: 1.2em; padding: 18px 40px; } }
+        .floating-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            background: var(--neon);
+            border-radius: 50%;
+            animation: float 8s infinite ease-in-out;
+            opacity: 0.3;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(30px, -30px); opacity: 0.6; }
+        }
+        
+        .container {
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .main-box {
+            background: var(--glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 40px auto;
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.6),
+                0 0 0 1px var(--border);
+            border: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .main-box::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            z-index: -1;
+            border-radius: 32px;
+            opacity: 0.3;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        .header h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 0 5px 15px rgba(99, 102, 241, 0.2);
+        }
+        
+        .header .subtitle {
+            font-size: 1.6rem;
+            color: var(--gray);
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+        
+        .section {
+            margin-bottom: 100px;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 3.2rem;
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            font-weight: 800;
+            color: var(--light);
+            margin-bottom: 50px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 2px;
+        }
+        
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background: rgba(30, 41, 59, 0.4);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                0 0 30px rgba(99, 102, 241, 0.2);
+            border-color: rgba(99, 102, 241, 0.4);
+        }
+        
+        .card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .problem-card {
+            border-left: 4px solid var(--accent);
+        }
+        
+        .secret-card {
+            border-left: 4px solid var(--neon);
+        }
+        
+        .card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+            color: var(--light);
+        }
+        
+        .problem-card h3 {
+            color: var(--accent);
+        }
+        
+        .secret-card h3 {
+            color: var(--neon);
+        }
+        
+        .card p {
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+        }
+        
+        .simulator {
+            background: rgba(30, 41, 59, 0.3);
+            border-radius: 25px;
+            padding: 50px;
+            margin: 60px 0;
+            border: 1px solid var(--border);
+        }
+        
+        .simulator-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .simulator-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            color: var(--light);
+        }
+        
+        .controls-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .control-group {
+            background: rgba(15, 23, 42, 0.5);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid var(--border);
+        }
+        
+        .control-group label {
+            display: block;
+            color: var(--gray);
+            margin-bottom: 15px;
+            font-weight: 500;
+            font-size: 1.1rem;
+        }
+        
+        .value-display {
+            float: right;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+        
+        .slider {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--primary);
+            cursor: pointer;
+            border: 3px solid var(--darkest);
+            transition: all 0.3s ease;
+        }
+        
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .result-column {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid var(--border);
+        }
+        
+        .result-column h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            font-weight: 700;
+            color: var(--light);
+        }
+        
+        .classic h3 {
+            color: var(--accent);
+        }
+        
+        .sethubble h3 {
+            color: var(--neon);
+        }
+        
+        .result-item {
+            background: rgba(30, 41, 59, 0.4);
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+        
+        .result-item .label {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .result-item .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--light);
+        }
+        
+        .income-item {
+            font-size: 2.5rem !important;
+            text-align: center;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 20px;
+            font-weight: 800 !important;
+        }
+        
+        .classic .income-item {
+            background: rgba(236, 72, 153, 0.15);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .sethubble .income-item {
+            background: rgba(0, 247, 255, 0.15);
+            border: 2px solid var(--neon);
+            color: var(--neon);
+        }
+        
+        .chart-container {
+            height: 400px;
+            margin-top: 40px;
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid var(--border);
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 60px;
+            margin: 80px 0;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            border-radius: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .cta h2 {
+            font-size: 3rem;
+            color: white;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: var(--darkest);
+            padding: 20px 60px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        .faq-item {
+            background: rgba(30, 41, 59, 0.4);
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid var(--border);
+        }
+        
+        .faq-item summary {
+            padding: 25px;
+            font-size: 1.3rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--light);
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-item summary::after {
+            content: '+';
+            font-size: 2rem;
+            color: var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-item[open] summary::after {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 25px 25px;
+            color: var(--gray);
+            line-height: 1.7;
+            border-top: 1px solid var(--border);
+            margin-top: 10px;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 1px solid var(--border);
+            color: var(--gray);
+        }
+        
+        .footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer a:hover {
+            color: var(--accent);
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 { font-size: 2.8rem; }
+            .header .subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2.2rem; }
+            .grid-2, .grid-3, .results-grid { grid-template-columns: 1fr; }
+            .main-box { padding: 30px 20px; }
+            .simulator { padding: 30px 20px; }
+        }
     </style>
 </head>
 <body>
-
+    <div class="floating-particles" id="particles"></div>
+    
     <div class="container">
         <div class="main-box">
             <header class="header">
@@ -102,20 +543,20 @@
             
             <section class="section">
                 <h2 class="section-title">Старые Правила Больше Не Работают</h2>
-                <div class="problem-grid">
-                    <div class="problem-card">
+                <div class="grid-2">
+                    <div class="card problem-card">
                         <h3>Высокие Комиссии и Задержки</h3>
                         <p>Классические партнерские сети забирают львиную долю прибыли, а ваши партнеры ждут выплат месяцами, теряя мотивацию.</p>
                     </div>
-                    <div class="problem-card">
+                    <div class="card problem-card">
                         <h3>Одноуровневая Система</h3>
                         <p>Ваши партнеры могут только продавать. Они не могут строить свои команды, что ограничивает ваш рост одним уровнем.</p>
                     </div>
-                    <div class="problem-card">
+                    <div class="card problem-card">
                         <h3>"Утечка" Клиентов</h3>
                         <p>Вы платите за рекламу, чтобы привести клиента на чужой сервис оплаты, и этот сервис забирает вашего клиента себе. Вы строите бизнес для них.</p>
                     </div>
-                    <div class="problem-card">
+                    <div class="card problem-card">
                         <h3>Гео-Ограничения</h3>
                         <p>Привлечь партнеров из других стран и платить им — настоящая головная боль из-за ограничений банковских систем.</p>
                     </div>
@@ -124,35 +565,29 @@
 
             <section class="section">
                 <h2 class="section-title">Новый Стандарт Партнерского Маркетинга</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <div class="icon">🕸️</div>
-                        <h3>Многоуровневые Программы</h3>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>🕸️ Многоуровневые Программы</h3>
                         <p>Создавайте партнерские программы глубиной до 10 уровней. Мотивируйте партнеров не просто продавать, а строить свои команды.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon">💸</div>
-                        <h3>Мгновенные Авто-Выплаты</h3>
+                    <div class="card">
+                        <h3>💸 Мгновенные Авто-Выплаты</h3>
                         <p>Партнеры получают вознаграждение на свои крипто-кошельки сразу после продажи. Никаких ручных выплат и месячных ожиданий.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon">🚀</div>
-                        <h3>Клиенты → Партнеры</h3>
+                    <div class="card">
+                        <h3>🚀 Клиенты → Партнеры</h3>
                         <p>Включите опцию, и каждый ваш покупатель автоматически получит предложение стать вашим партнером. Ваша армия продавцов растет с каждой продажей.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon">🌍</div>
-                        <h3>Глобальный Охват</h3>
+                    <div class="card">
+                        <h3>🌍 Глобальный Охват</h3>
                         <p>Принимайте платежи и выплачивайте вознаграждения в криптовалюте по всему миру без ограничений и блокировок.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon">🔌</div>
-                        <h3>Интеграция по API</h3>
+                    <div class="card">
+                        <h3>🔌 Интеграция по API</h3>
                         <p>Автоматизируйте всё: от доставки товаров до синхронизации с вашей CRM. Встройте SetHubble в любую вашу систему.</p>
                     </div>
-                    <div class="feature-card">
-                        <div class="icon">📊</div>
-                        <h3>Полный Контроль</h3>
+                    <div class="card">
+                        <h3>📊 Полный Контроль</h3>
                         <p>Управляйте вашей сетью из многофункционального офиса. Отслеживайте доходы и анализируйте продажи в реальном времени.</p>
                     </div>
                 </div>
@@ -160,20 +595,17 @@
             
             <section class="section">
                 <h2 class="section-title">Для Кого Этот Конструктор?</h2>
-                <div class="audience-grid">
-                     <div class="audience-card">
-                        <div class="icon">👨‍🏫</div>
-                        <h3>Авторов и Инфобизнесменов</h3>
+                <div class="grid-3">
+                    <div class="card">
+                        <h3>👨‍🏫 Авторов и Инфобизнесменов</h3>
                         <p>Которые хотят создать собственную, независимую партнерскую сеть и перестать зависеть от дорогих сервисов.</p>
                     </div>
-                    <div class="audience-card">
-                        <div class="icon">🧑‍🤝‍🧑</div>
-                        <h3>Сетевых Лидеров</h3>
+                    <div class="card">
+                        <h3>🧑‍🤝‍🧑 Сетевых Лидеров</h3>
                         <p>Которые ищут более гибкую и мощную платформу для своих команд с бинарной системой и мгновенными выплатами.</p>
                     </div>
-                    <div class="audience-card">
-                        <div class="icon">🎯</div>
-                        <h3>Маркетологов и Рекламодателей</h3>
+                    <div class="card">
+                        <h3>🎯 Маркетологов и Рекламодателей</h3>
                         <p>Которые устали "сливать бюджеты" и хотят платить только за реальные продажи, а не за клики и показы.</p>
                     </div>
                 </div>
@@ -181,47 +613,98 @@
 
             <section class="section">
                 <h2 class="section-title">Ваше "Секретное Оружие"</h2>
-                <p class="subtitle" style="font-size: 1.3em; margin-top: -30px; margin-bottom: 40px;">Помимо стандартных функций, вы получаете два несравненных преимущества:</p>
-                <div class="secret-weapon-grid">
-                    <div class="secret-weapon-card">
-                        <div class="icon">🎯</div>
-                        <h3>"Цифровой Капкан"</h3>
-                        <p>Любой, кто коснулся вашей ссылки, <span class="highlight-underline">навечно попадает в вашу структуру</span> на 4 месяца. Даже если он уйдет и вернется на платформу через чужую рекламу. Ваши усилия больше никогда не пропадают.</p>
+                <p class="subtitle" style="font-size: 1.3em; margin-top: -30px; margin-bottom: 40px; text-align: center;">Помимо стандартных функций, вы получаете два несравненных преимущества:</p>
+                <div class="grid-2">
+                    <div class="card secret-card">
+                        <h3>🎯 "Цифровой Капкан"</h3>
+                        <p>Любой, кто коснулся вашей ссылки, <span class="highlight">навечно попадает в вашу структуру</span> на 4 месяца. Даже если он уйдет и вернется на платформу через чужую рекламу. Ваши усилия больше никогда не пропадают.</p>
                     </div>
-                    <div class="secret-weapon-card">
-                        <div class="icon">👑</div>
-                        <h3>"Налог с Конкурентов"</h3>
-                        <p>Благодаря "Капкану", ваш конкурент, продающий свои курсы через SetHubble, становится частью вашей структуры. Вы начинаете получать <span class="highlight-underline">пассивный доход с его продаж</span>. Он работает — вы зарабатываете.</p>
+                    <div class="card secret-card">
+                        <h3>👑 "Налог с Конкурентов"</h3>
+                        <p>Благодаря "Капкану", ваш конкурент, продающий свои курсы через SetHubble, становится частью вашей структуры. Вы начинаете получать <span class="highlight">пассивный доход с его продаж</span>. Он работает — вы зарабатываете.</p>
                     </div>
                 </div>
             </section>
 
-            <section class="cta-section">
-                <h2>Готовы Запустить Свой Движок?</h2>
-                <!-- 
-                    ВАЖНО: Эта ссылка будет работать только после настройки редиректа на Netlify.
-                    Создайте в корневой папке вашего проекта файл с именем `_redirects` (без расширения)
-                    и добавьте в него строку:
-                    /start    https://sethubble.com/ru/p_qdr?ref=YOUR_LOGIN    301
-                -->
-                <a href="/start" target="_blank" class="main-cta-button">Получить Бесплатный Доступ к Конструктору</a>
-                <p class="cta-subtitle">Регистрация бесплатна и ни к чему не обязывает, но она навсегда "застолбит" ваше место в глобальной системе.</p>
+            <section class="simulator">
+                <div class="simulator-header">
+                    <h2>Симулятор Дохода Автора</h2>
+                    <p style="font-size: 1.2rem; color: var(--gray); margin-top: 20px;">Узнайте, почему глубокая партнерская сеть выгоднее, даже если вы отдаете партнерам больший процент. "Поиграйте" с параметрами и сравните ваш чистый доход за год.</p>
+                </div>
+                
+                <div class="controls-grid">
+                    <div class="control-group">
+                        <label for="price">Цена Вашего Продукта, $ <span class="value-display" id="priceValue">100</span></label>
+                        <input type="range" id="price" class="slider" min="10" max="1000" value="100" step="10">
+                    </div>
+                    <div class="control-group">
+                        <label for="initialPartners">Ваши прямые партнеры в месяц <span class="value-display" id="initialPartnersValue">10</span></label>
+                        <input type="range" id="initialPartners" class="slider" min="1" max="100" value="10">
+                    </div>
+                    <div class="control-group">
+                        <label for="partnerDuplication">Продаж от 1 партнера в месяц <span class="value-display" id="partnerDuplicationValue">2</span></label>
+                        <input type="range" id="partnerDuplication" class="slider" min="1" max="10" value="2">
+                    </div>
+                </div>
+
+                <div class="results-grid">
+                    <div class="result-column classic">
+                        <h3>Классическая Партнерка</h3>
+                        <div class="result-item">
+                            <div class="label">Всего партнеров в сети (за год)</div>
+                            <div class="value" id="classicTotalPartners">0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="label">Выплаты партнерам (2 ур: 50%+5%)</div>
+                            <div class="value" id="classicTotalPayout">$0</div>
+                        </div>
+                        <div class="result-item income-item" id="classicAuthorIncome">$0</div>
+                    </div>
+                    <div class="result-column sethubble">
+                        <h3>Экосистема SetHubble</h3>
+                        <div class="result-item">
+                            <div class="label">Всего партнеров в сети (за год)</div>
+                            <div class="value" id="sethubbleTotalPartners">0</div>
+                        </div>
+                        <div class="result-item">
+                            <div class="label">Выплаты партнерам (5 ур: 50%+4x7%)</div>
+                            <div class="value" id="sethubbleTotalPayout">$0</div>
+                        </div>
+                        <div class="result-item income-item" id="sethubbleAuthorIncome">$0</div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px; padding: 30px; background: rgba(15, 23, 42, 0.5); border-radius: 20px; border: 1px solid var(--border);">
+                    <p style="font-size: 1.2rem; color: var(--gray); line-height: 1.7;">
+                        Обратите внимание: в модели SetHubble вы строите <span id="conclusionPartners" class="highlight">в 0</span> раз большую "армию" партнеров, что приводит к <span id="conclusionIncome" class="highlight">в 0 раз</span> большему чистому доходу. А теперь представьте, какой дополнительный доход вы получите, когда часть этих партнеров купят платные тарифы или начнут продавать собственные продукты!
+                    </p>
+                </div>
+
+                <div class="chart-container">
+                    <canvas id="salesChart"></canvas>
+                </div>
             </section>
 
-        </div> <!-- === КОНЕЦ .main-box === -->
+            <section class="cta">
+                <h2>Готовы Запустить Свой Движок?</h2>
+                <a href="/start" target="_blank" class="cta-button">Получить Бесплатный Доступ к Конструктору</a>
+                <p style="color: rgba(255,255,255,0.8); margin-top: 20px; font-size: 1.1rem;">
+                    Регистрация бесплатна и ни к чему не обязывает, но она навсегда "застолбит" ваше место в глобальной системе.
+                </p>
+            </section>
+        </div>
 
-        <!-- === НОВЫЙ БЛОК: FAQ теперь находится снаружи === -->
-        <section class="faq-section-wrapper">
-             <h2 class="section-title">Ответы на Главные Вопросы</h2>
-             <div class="faq-item">
+        <section style="margin-top: 60px;">
+            <h2 class="section-title">Ответы на Главные Вопросы</h2>
+            <div class="faq-item">
                 <details>
                     <summary>Это не финансовая пирамида?</summary>
                     <div class="faq-answer">
-                        <p>Нет. В пирамидах доход генерируется за счет взносов новых участников. В SetHubble доход генерируется **исключительно от реальных продаж** товаров и услуг. Платформа — это просто технология, инструмент для организации партнерского маркетинга, как у Amazon или любого другого маркетплейса, только гораздо мощнее.</p>
+                        <p>Нет. В пирамидах доход генерируется за счет взносов новых участников. В SetHubble доход генерируется <strong>исключительно от реальных продаж</strong> товаров и услуг. Платформа — это просто технология, инструмент для организации партнерского маркетинга, как у Amazon или любого другого маркетплейса, только гораздо мощнее.</p>
                     </div>
                 </details>
             </div>
-             <div class="faq-item">
+            <div class="faq-item">
                 <details>
                     <summary>Криптовалюта — это сложно и опасно?</summary>
                     <div class="faq-answer">
@@ -229,7 +712,7 @@
                     </div>
                 </details>
             </div>
-             <div class="faq-item">
+            <div class="faq-item">
                 <details>
                     <summary>Насколько это сложно настроить?</summary>
                     <div class="faq-answer">
@@ -242,9 +725,191 @@
         <footer class="footer">
             <p>Этот сайт является ресурсом независимого партнера и не является официальным сайтом компании SetHubble.</p>
             <p>Информация предоставлена в ознакомительных целях для демонстрации ключевых преимуществ платформы.</p>
-            <p><a href="https://sethubble.com/ru/p_qdr" target="_blank">Перейти на официальный сайт SetHubble</a></p>
+            <p><a href="https://sethubble.com/ru/p_qdr" target="_blank">Перейти на страницу регистрации SetHubble</a></p>
         </footer>
     </div>
 
+    <script>
+        // Create floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 5}s`;
+                container.appendChild(particle);
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            createParticles();
+            
+            const priceSlider = document.getElementById('price');
+            const initialPartnersSlider = document.getElementById('initialPartners');
+            const partnerDuplicationSlider = document.getElementById('partnerDuplication');
+
+            const priceValue = document.getElementById('priceValue');
+            const initialPartnersValue = document.getElementById('initialPartnersValue');
+            const partnerDuplicationValue = document.getElementById('partnerDuplicationValue');
+
+            const classicTotalPartnersElem = document.getElementById('classicTotalPartners');
+            const classicTotalPayoutElem = document.getElementById('classicTotalPayout');
+            const classicAuthorIncomeElem = document.getElementById('classicAuthorIncome');
+
+            const sethubbleTotalPartnersElem = document.getElementById('sethubbleTotalPartners');
+            const sethubbleTotalPayoutElem = document.getElementById('sethubbleTotalPayout');
+            const sethubbleAuthorIncomeElem = document.getElementById('sethubbleAuthorIncome');
+            
+            const conclusionPartnersElem = document.getElementById('conclusionPartners');
+            const conclusionIncomeElem = document.getElementById('conclusionIncome');
+            
+            const ctx = document.getElementById('salesChart').getContext('2d');
+            let salesChartInstance = null;
+
+            const SIMULATION_MONTHS = 12;
+
+            function formatNumber(num) {
+                return num.toLocaleString('ru-RU', { maximumFractionDigits: 0 });
+            }
+
+            function simulate(levelsCount, commissions) {
+                const productPrice = parseInt(priceSlider.value);
+                const initialDirectPartnersPerMonth = parseInt(initialPartnersSlider.value);
+                const salesPerPartnerPerMonth = parseInt(partnerDuplicationSlider.value);
+
+                let partnersOnLevel = Array(levelsCount).fill(0);
+                let totalPayout = 0;
+                let monthlyTotalPartnersChart = [0];
+
+                for (let month = 1; month <= SIMULATION_MONTHS; month++) {
+                    let newPartnersThisMonthByLevel = Array(levelsCount).fill(0);
+
+                    // 1. Новые L1 партнеры, привлеченные лично вами
+                    newPartnersThisMonthByLevel[0] = initialDirectPartnersPerMonth;
+                    totalPayout += initialDirectPartnersPerMonth * productPrice * commissions[0];
+
+                    // 2. Новые партнеры от существующих партнеров
+                    for (let level = 0; level < levelsCount - 1; level++) {
+                        const salesFromThisLevel = partnersOnLevel[level] * salesPerPartnerPerMonth;
+                        newPartnersThisMonthByLevel[level + 1] += salesFromThisLevel;
+                        totalPayout += salesFromThisLevel * productPrice * commissions[level + 1];
+                    }
+                    
+                    // 3. Обновляем общее число партнеров на каждом уровне
+                    for (let level = 0; level < levelsCount; level++) {
+                        partnersOnLevel[level] += newPartnersThisMonthByLevel[level];
+                    }
+                    
+                    monthlyTotalPartnersChart.push(partnersOnLevel.reduce((a, b) => a + b, 0));
+                }
+                
+                const finalTotalPartners = partnersOnLevel.reduce((a, b) => a + b, 0);
+                const totalSales = finalTotalPartners * salesPerPartnerPerMonth * SIMULATION_MONTHS / levelsCount + initialDirectPartnersPerMonth * SIMULATION_MONTHS;
+                const totalRevenue = totalSales * productPrice;
+                const authorIncome = totalRevenue - totalPayout;
+
+                return {
+                    totalPartners: finalTotalPartners,
+                    totalPayout,
+                    authorIncome,
+                    monthlyTotalPartnersChart
+                };
+            }
+
+            function render() {
+                if (!priceSlider) return;
+                
+                priceValue.textContent = '$' + priceSlider.value;
+                initialPartnersValue.textContent = initialPartnersSlider.value;
+                partnerDuplicationValue.textContent = partnerDuplicationSlider.value;
+                
+                const classicCommissions = [0.50, 0.05];
+                const classicResults = simulate(2, classicCommissions);
+                classicTotalPartnersElem.textContent = formatNumber(classicResults.totalPartners);
+                classicTotalPayoutElem.textContent = '$' + formatNumber(classicResults.totalPayout);
+                classicAuthorIncomeElem.textContent = '$' + formatNumber(classicResults.authorIncome);
+
+                const sethubbleCommissions = [0.50, 0.07, 0.07, 0.07, 0.07];
+                const sethubbleResults = simulate(5, sethubbleCommissions);
+                sethubbleTotalPartnersElem.textContent = formatNumber(sethubbleResults.totalPartners);
+                sethubbleTotalPayoutElem.textContent = '$' + formatNumber(sethubbleResults.totalPayout);
+                sethubbleAuthorIncomeElem.textContent = '$' + formatNumber(sethubbleResults.authorIncome);
+                
+                const partnerDiffFactor = classicResults.totalPartners > 0 ? sethubbleResults.totalPartners / classicResults.totalPartners : Infinity;
+                const incomeDiffFactor = classicResults.authorIncome > 0 ? sethubbleResults.authorIncome / classicResults.authorIncome : Infinity;
+
+                conclusionPartnersElem.textContent = isFinite(partnerDiffFactor) ? `в ${formatNumber(partnerDiffFactor)}` : 'в ∞';
+                conclusionIncomeElem.textContent = isFinite(incomeDiffFactor) ? `в ${formatNumber(incomeDiffFactor)} раз` : 'в ∞ раз';
+                
+                if (salesChartInstance) salesChartInstance.destroy();
+                const labels = Array.from({length: SIMULATION_MONTHS + 1}, (_, i) => `М${i}`);
+                salesChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels,
+                        datasets: [
+                            { 
+                                label: 'Партнеры "Классика"', 
+                                data: classicResults.monthlyTotalPartnersChart, 
+                                borderColor: 'rgba(236, 72, 153, 0.8)', 
+                                backgroundColor: 'rgba(236, 72, 153, 0.1)', 
+                                fill: true, 
+                                tension: 0.4 
+                            },
+                            { 
+                                label: 'Партнеры "SetHubble"', 
+                                data: sethubbleResults.monthlyTotalPartnersChart, 
+                                borderColor: 'rgba(0, 247, 255, 0.8)', 
+                                backgroundColor: 'rgba(0, 247, 255, 0.2)', 
+                                fill: true, 
+                                tension: 0.4 
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true, 
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: { 
+                                beginAtZero: true, 
+                                ticks: { color: '#94a3b8' }, 
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' } 
+                            },
+                            x: { 
+                                ticks: { color: '#94a3b8' }, 
+                                grid: { color: 'rgba(255, 255, 255, 0.1)' } 
+                            }
+                        },
+                        plugins: {
+                            legend: { 
+                                position: 'top', 
+                                labels: { color: '#e2e8f0', font: { size: 14 } } 
+                            },
+                            tooltip: { 
+                                callbacks: { 
+                                    label: context => `${context.dataset.label}: ${formatNumber(context.parsed.y)} чел.` 
+                                },
+                                backgroundColor: 'rgba(15, 23, 42, 0.9)',
+                                titleColor: '#f8fafc',
+                                bodyColor: '#e2e8f0'
+                            }
+                        }
+                    }
+                });
+            }
+
+            [priceSlider, initialPartnersSlider, partnerDuplicationSlider].forEach(slider => {
+                slider.addEventListener('input', render);
+            });
+
+            render();
+        });
+    </script>
 </body>
 </html>
+```
