@@ -149,4 +149,3 @@ document.addEventListener('DOMContentLoaded', function() {
     updateUI();
     render();
 });
-</script>
