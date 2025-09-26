@@ -2,31 +2,29 @@ const { DateTime } = require("luxon");
 
 module.exports = function(eleventyConfig) {
 
-  // Эта команда копирует файлы стилей, картинки и админку в итоговый сайт
-  eleventyConfig.addPassthroughCopy("src/assets");
-  eleventyConfig.addPassthroughCopy("src/css");
-  eleventyConfig.addPassthroughCopy("src/admin");
+  // Копируем статические файлы: админку, стили, картинки
+  eleventyConfig.addPassthroughCopy("admin");
+  eleventyConfig.addPassthroughCopy("static/css");
+  eleventyConfig.addPassthroughCopy("static/img");
 
-  // Фильтр для форматирования даты в читаемый вид (напр. 14 Apr 2021)
+  // Фильтр для форматирования даты в читаемый вид
   eleventyConfig.addFilter("readableDate", dateObj => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
   });
 
-  // Фильтр для форматирования даты для HTML-атрибута <time> (напр. 2021-04-14)
-  // ЭТОТ ФИЛЬТР РЕШАЕТ ВАШУ ГЛАВНУЮ ОШИБКУ
+  // Фильтр для форматирования даты для HTML-атрибута <time>
   eleventyConfig.addFilter('machineDate', (dateObj) => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-MM-dd');
   });
 
   // Указываем Eleventy, где брать исходники и куда складывать результат
   return {
-    // Markdown файлы будут обрабатываться шаблонизатором Nunjucks
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     
     dir: {
-      input: ".",
-      output: "_site"
+      input: ".", // Искать файлы в текущей директории (blog/)
+      output: "_site" // Складывать результат в _site
     }
   };
 };
