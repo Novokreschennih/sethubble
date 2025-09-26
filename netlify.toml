@@ -1,12 +1,7 @@
-# Финальная, гибридная конфигурация для Netlify
 [build]
-  # Конечная папка для публикации будет называться "dist"
-  publish = "dist/"
+  # Финальная папка для публикации
+  publish = "dist"
   
-  # Сложная команда, которая делает всё, что нам нужно:
-  # 1. Заходит в папку blog, устанавливает зависимости и собирает блог
-  # 2. Возвращается в корень проекта
-  # 3. Создает финальную папку "dist"
-  # 4. Копирует ваш главный index.html в эту папку
-  # 5. Создает подпапку "blog" внутри "dist" и копирует туда собранный блог
-  command = "cd blog && npm install && npm run build && cd .. && mkdir dist && cp index.html dist/ && cp -r blog/_site/* dist/blog/"
+  # Команда, которая выполняется из корня
+  # Мы убираем "npm install", так как "Package directory" сделает это за нас.
+  command = "cd blog && npm run build && cd .. && mkdir dist && cp index.html dist/ && cp -r blog/_site/* dist/blog/"
