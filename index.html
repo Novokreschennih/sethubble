@@ -83,6 +83,11 @@
             width: 100px; height: 4px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 2px;
         }
         
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
         
         .card {
@@ -101,7 +106,6 @@
         .card p { color: var(--gray); line-height: 1.7; font-size: 1rem; }
         .highlight { background: linear-gradient(90deg, var(--primary), var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
         
-        /* --- NEW: Interactive Audience Section --- */
         .audience-section .section-title {
             margin-bottom: 50px;
         }
@@ -231,7 +235,7 @@
         .income-item {
             font-size: 2.4rem !important; text-align: center; padding: 20px;
             border-radius: 15px; font-weight: 800 !important;
-            margin-top: auto; /* Pushes the item to the bottom of the flex container */
+            margin-top: auto;
         }
         .classic .income-item { background: rgba(236, 72, 153, 0.1); border: 1px solid var(--accent); color: var(--accent); }
         .sethubble .income-item { background: rgba(0, 247, 255, 0.1); border: 1px solid var(--neon); color: var(--neon); }
@@ -262,14 +266,37 @@
         
         @media (max-width: 992px) { 
             .results-grid { grid-template-columns: 1fr; } 
+            
             .audience-grid {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+
+            /* --- FIX FOR AUDIENCE CONTENT OVERFLOW --- */
+            .audience-content-wrapper {
+                min-height: unset;
+                height: auto;
+            }
+            .audience-content {
+                position: relative;
+                display: none;
+                inset: auto;
+            }
+            .audience-content.active {
+                display: flex;
+            }
+            /* --- END OF FIX --- */
         }
+
         @media (max-width: 768px) {
-            .header h1 { font-size: 2.8rem; } .header .subtitle { font-size: 1.2rem; }
-            .section-title { font-size: 2.2rem; } .main-box { padding: 30px 20px; } .simulator { padding: 30px 20px; }
+            .header h1 { font-size: 2.8rem; } 
+            .header .subtitle { font-size: 1.2rem; }
+            .section-title { font-size: 2.2rem; } 
+            .main-box { padding: 30px 20px; } 
+            .simulator { padding: 30px 20px; }
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -349,7 +376,7 @@
 
             <section class="section">
                 <h2 class="section-title animate-on-scroll">Ваше "Секретное Оружие"</h2>
-                <div class="grid-3" style="grid-template-columns: 1fr 1fr; gap: 30px;">
+                <div class="grid-2">
                     <div class="card secret-card animate-on-scroll">
                         <h3>🎯 "Цифровой Капкан"</h3>
                         <p>Любой, кто коснулся вашей ссылки, <span class="highlight">навечно попадает в вашу структуру</span> на 4 месяца. Ваши усилия больше никогда не пропадают зря.</p>
@@ -375,7 +402,7 @@
                     </div>
                     <div class="control-group">
                         <label for="initialPartners">Личных партнеров в месяц <span class="value-display" id="initialPartnersValue">10</span></label>
-                        <input type="range" id="initialPartners" class="slider" min="1" max="50" value="10">
+                        <input type="range" id="initialPartners" class="slider" min="1" max="50" value="10" step="1">
                     </div>
                     <div class="control-group">
                         <label for="partnerDuplication">Продаж от 1 партнера в мес. <span class="value-display" id="partnerDuplicationValue">2</span></label>
@@ -401,7 +428,7 @@
                                 <input type="number" id="classicL2" class="number-input" value="5" min="0" max="100">
                             </div>
                         </div>
-                        <div class="warning"></div> <!-- Placeholder for alignment -->
+                        <div class="warning"></div>
                         <div class="result-item"><div class="label">Партнеров в сети (за год)</div><div class="value" id="classicTotalPartners">0</div></div>
                         <div class="result-item income-item" id="classicAuthorIncome">$0</div>
                     </div>
@@ -626,7 +653,7 @@
             const classicResults = simulate(classicSimConfig); const sethubbleResults = simulate(sethubbleSimConfig);
             animateCounter(elements.classic.partners, classicResults.totalPartners); animateCounter(elements.classic.income, classicResults.authorIncome);
             animateCounter(elements.sethubble.partners, sethubbleResults.totalPartners); animateCounter(elements.sethubble.income, sethubbleResults.authorIncome);
-            const incomeFactor = classicResults.authorIncome > 0 ? (sethubbleResults.authorIncome / classicResults.authorIncome).toFixed(1) : "∞";
+            const incomeFactor = classicResults.authorIncome > 0 && sethubbleResults.authorIncome > 0 ? (sethubbleResults.authorIncome / classicResults.authorIncome).toFixed(1) : "∞";
             elements.conclusionText.innerHTML = `В вашей конфигурации SetHubble приносит <span class="highlight">${incomeFactor} раз</span> больше чистого дохода.`;
             if (salesChartInstance) salesChartInstance.destroy();
             const labels = Array.from({length: SIMULATION_MONTHS + 1}, (_, i) => `М${i}`);
