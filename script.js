@@ -1,3 +1,16 @@
+// Функция-ограничитель (throttle)
+function throttle(func, limit) {
+    let inThrottle;
+    return function() {
+        const args = arguments;
+        const context = this;
+        if (!inThrottle) {
+            func.apply(context, args);
+            inThrottle = true;
+            setTimeout(() => inThrottle = false, limit);
+        }
+    }
+}
 document.addEventListener('DOMContentLoaded', function() {
     // --- WOW Effects (Aurora, Scroll Animation) ---
     document.body.addEventListener('mousemove', e => {
@@ -54,9 +67,13 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         };
         const animate = () => { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { p.update(); p.draw(); }); connectParticles(); requestAnimationFrame(animate); };
-        canvas.parentElement.addEventListener('mousemove', e => { const rect = canvas.getBoundingClientRect(); mouse.x = e.clientX - rect.left; mouse.y = e.clientY - rect.top; });
+        canvas.parentElement.addEventListener('mousemove', throttle(e => {
+            const rect = canvas.getBoundingClientRect();
+            mouse.x = e.clientX - rect.left;
+            mouse.y = e.clientY - rect.top;
+        }, 50));
         canvas.parentElement.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
-        window.addEventListener('resize', init);
+        window.addEventListener('resize', throttle(init, 200));
         init();
         animate();
     }
