@@ -65,15 +65,8 @@
         @keyframes text-gradient { to { background-position: 200% center; } }
         .header .subtitle { font-size: 1.5rem; color: var(--gray); max-width: 700px; margin: 0 auto 30px; line-height: 1.6; font-weight: 300; }
 
-        #hero-canvas {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0; opacity: 0.5;
-        }
-        .header h1, .header .subtitle, .header .cta-button {
-            position: relative;
-            z-index: 1;
-        }
+        #hero-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5; }
+        .header h1, .header .subtitle, .header .cta-button { position: relative; z-index: 1; }
 
         .cta-button {
             display: inline-block; background: linear-gradient(45deg, var(--primary), var(--secondary));
@@ -112,6 +105,16 @@
         .card p { color: var(--gray); line-height: 1.7; font-size: 1rem; }
         .highlight { background: linear-gradient(90deg, var(--primary), var(--neon)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; }
         
+        .philosophy-block { background: rgba(15, 23, 42, 0.5); border: 1px solid var(--border); border-left: 4px solid var(--primary); padding: 40px; border-radius: 20px; text-align: center; max-width: 900px; margin: 0 auto; }
+        .philosophy-title { font-size: 2rem; margin-bottom: 20px; color: var(--light); }
+        .philosophy-text { font-size: 1.2rem; color: var(--gray); line-height: 1.8; }
+        
+        .structure-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; }
+        .structure-header .icon { font-size: 2rem; }
+        .structure-header h3 { margin-bottom: 0; }
+        .structure-header .tag { background: rgba(99, 102, 241, 0.2); color: var(--primary); padding: 5px 10px; border-radius: 8px; font-size: 0.8rem; font-weight: 600; margin-left: auto; }
+        .structure-header .tag.pro { background: rgba(0, 247, 255, 0.2); color: var(--neon); }
+
         .audience-section .section-title { margin-bottom: 50px; }
         .audience-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 50px; align-items: center; min-height: 300px; }
         .audience-triggers { display: flex; flex-direction: column; gap: 15px; }
@@ -241,6 +244,13 @@
                 </div>
             </section>
             
+            <section class="section">
+                <div class="philosophy-block animate-on-scroll">
+                    <h3 class="philosophy-title">Наша Философия: Справедливое Вознаграждение</h3>
+                    <p class="philosophy-text">Любой бизнес растет благодаря рекомендациям. Но в обычной жизни "сарафанное радио" не приносит доход тем, кто его запускает. Мы создали SetHubble, чтобы исправить это. Наша цель — структурировать все взаимосвязи и справедливо вознаграждать каждого участника, превращая обычные рекомендации в стабильный источник дохода.</p>
+                </div>
+            </section>
+
             <section class="section audience-section">
                 <h2 class="section-title animate-on-scroll">Для Кого Этот Конструктор?</h2>
                 <div class="audience-grid animate-on-scroll">
@@ -366,6 +376,28 @@
 
                 <div class="chart-container"><canvas id="salesChart"></canvas></div>
             </section>
+            
+            <section class="section">
+                <h2 class="section-title animate-on-scroll">Два Двигателя Вашего Дохода</h2>
+                <div class="grid-2">
+                    <div class="card animate-on-scroll">
+                        <div class="structure-header">
+                            <span class="icon">🌿</span>
+                            <h3>Линейная Система</h3>
+                            <span class="tag">Для Всех</span>
+                        </div>
+                        <p>Простая и понятная структура до 10 уровней в глубину. Идеальна для быстрого старта и массового вовлечения. Вы получаете процент с продаж продуктов и с покупки тарифов вашими партнерами.</p>
+                    </div>
+                    <div class="card secret-card animate-on-scroll" data-delay="100">
+                         <div class="structure-header">
+                            <span class="icon">💎</span>
+                            <h3>Бинарная Система</h3>
+                            <span class="tag pro">Для Профи</span>
+                        </div>
+                        <p>Безграничная глубина для профессионалов. Здесь вы накапливаете баллы (PV) со всей структуры, включая "переливы" от вышестоящих лидеров, и конвертируете их в солидные денежные бонусы.</p>
+                    </div>
+                </div>
+            </section>
 
             <section class="final-cta animate-on-scroll">
                 <h2>Готовы Запустить Свой Движок?</h2>
@@ -381,7 +413,7 @@
                 <details>
                     <summary>Сколько это стоит?</summary>
                     <div class="faq-answer">
-                        <p>SetHubble берет только небольшой процент (от 1% до 5% в зависимости от тарифа) <strong>при выводе средств</strong>. Нет никаких скрытых платежей, абонентской платы на бесплатном тарифе или комиссий за установку.</p>
+                        <p><strong>На бесплатном тарифе вы не платите ничего.</strong> SetHubble берет только небольшой процент (от 1% до 5% в зависимости от тарифа) <strong>при выводе средств</strong>. Нет никаких скрытых платежей, абонентской платы или комиссий за установку. Если вы ничего не заработали — вы ничего не платите.</p>
                     </div>
                 </details>
             </div>
@@ -397,18 +429,18 @@
 
             <div class="faq-item animate-on-scroll" data-delay="200">
                 <details>
-                    <summary>Что можно продавать?</summary>
+                    <summary>Криптовалюта — это обязательно?</summary>
                     <div class="faq-answer">
-                        <p>Практически всё: цифровые и физические товары, услуги, подписки, пожертвования. Существует небольшой список запрещенных товаров (оружие, наркотики и т.д.), который соответствует международным стандартам.</p>
+                        <p>Да, и это наше ключевое преимущество. Использование криптовалюты (в основном стейблкоинов, равных доллару) позволяет нам обеспечить мгновенные выплаты и полностью убрать географические ограничения. Это проще, чем кажется: создать кошелек сегодня не сложнее, чем зарегистрировать PayPal.</p>
                     </div>
                 </details>
             </div>
 
             <div class="faq-item animate-on-scroll" data-delay="300">
                 <details>
-                    <summary>Обязательно ли создавать партнерку?</summary>
+                    <summary>Это не похоже на пирамиду?</summary>
                     <div class="faq-answer">
-                        <p><strong>Нет, не обязательно.</strong> Вы можете использовать SetHubble как удобную и выгодную платежную систему для продажи своих товаров без партнерской программы. Подключение партнерки — это опция, которую вы можете включить в любой момент.</p>
+                        <p>Нет. В пирамидах доход генерируется за счет взносов новых участников. В SetHubble доход генерируется <strong>исключительно от реальных продаж</strong> товаров и услуг. Платформа — это просто технология для организации честного партнерского маркетинга.</p>
                     </div>
                 </details>
             </div>
@@ -416,7 +448,7 @@
             <div style="text-align: center; margin-top: 40px;" class="animate-on-scroll">
                 <p style="color: var(--gray); font-size: 1.1rem;">
                     Не нашли свой вопрос? 
-                    <a href="/full-faq" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">Посмотрите полный F.A.Q.</a>
+                    <a href="/full-faq" target="_blank" style="color: var(--primary); text-decoration: none; font-weight: 600;">Посмотрите полную Базу Знаний</a>
                 </p>
             </div>
         </section>
@@ -461,7 +493,14 @@
                 update() { this.x += this.vx; this.y += this.vy; if (this.x < 0 || this.x > canvas.width) this.vx *= -1; if (this.y < 0 || this.y > canvas.height) this.vy *= -1; }
                 draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2); ctx.fillStyle = 'rgba(255, 255, 255, 0.8)'; ctx.fill(); }
             }
-            const init = () => { setCanvasSize(); particles = []; const particleCount = Math.floor(canvas.width * canvas.height / 7000); for (let i = 0; i < particleCount; i++) { particles.push(new Particle()); } };
+            const init = () => {
+                setCanvasSize();
+                particles = [];
+                const particleCount = Math.floor(canvas.width * canvas.height / 7000);
+                for (let i = 0; i < particleCount; i++) {
+                    particles.push(new Particle());
+                }
+            };
             const connectParticles = () => {
                 for (let a = 0; a < particles.length; a++) {
                     for (let b = a; b < particles.length; b++) {
