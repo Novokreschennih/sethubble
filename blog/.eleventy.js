@@ -1,4 +1,5 @@
 const { DateTime } = require("luxon");
+const CleanCSS = require("clean-css");
 
 module.exports = function(eleventyConfig) {
 
@@ -16,6 +17,9 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addFilter('machineDate', (dateObj) => {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-MM-dd');
   });
+  eleventyConfig.addFilter("cssmin", function(code) {
+  return new CleanCSS({}).minify(code).styles;
+});
 
   // Указываем Eleventy, где брать исходники и куда складывать результат
   return {
