@@ -28,13 +28,14 @@
 
     <hr class="my-8">
 
+    
     {# -- БЛОК "ПОДЕЛИТЬСЯ В СОЦСЕТЯХ" -- #}
-    <div class="share-buttons text-center">
-        <h3 class="font-bold mb-4">Понравилась статья? Поделитесь!</h3>
-        <a href="https://t.me/share/url?url={{ page.url | url | absoluteUrl(meta.url) }}&text={{ title }}" target="_blank" rel="noopener" class="share-button">Telegram</a>
-        <a href="https://vk.com/share.php?url={{ page.url | url | absoluteUrl(meta.url) }}" target="_blank" rel="noopener" class="share-button">VK</a>
-        <a href="https://twitter.com/intent/tweet?text={{ title }}&url={{ page.url | url | absoluteUrl(meta.url) }}" target="_blank" rel="noopener" class="share-button">Twitter</a>
-    </div>
+<div class="share-buttons text-center">
+    <h3 class="font-bold mb-4">Понравилась статья? Поделитесь!</h3>
+    <a href="https://t.me/share/url?url={{ metadata.url }}{{ page.url }}&text={{ title | urlencode }}" target="_blank" rel="noopener" class="share-button">Telegram</a>
+    <a href="https://vk.com/share.php?url={{ metadata.url }}{{ page.url }}" target="_blank" rel="noopener" class="share-button">VK</a>
+    <a href="https://twitter.com/intent/tweet?text={{ title | urlencode }}&url={{ metadata.url }}{{ page.url }}" target="_blank" rel="noopener" class="share-button">Twitter</a>
+</div>
 
   </article>
 {% endblock %}
