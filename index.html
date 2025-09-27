@@ -469,7 +469,7 @@ body::before {
     <script src="./script.js" defer></script>
     <!-- Скрипт-перехватчик для Netlify Identity -->
 <script>
-  if (window.location.hash.includes('confirmation_token') || window.location.hash.includes('recovery_token')) {
+  if (window.location.hash.includes('confirmation_token') || window.location.hash.includes('confirmation_token')) {
     // Если в URL есть токен подтверждения или восстановления,
     // немедленно перенаправляем на страницу админки, сохранив токен.
     window.location.href = "/blog/admin/" + window.location.hash;
@@ -477,5 +477,4 @@ body::before {
 </script>
 </body>
 </html>
-</body>
-</html>
+
