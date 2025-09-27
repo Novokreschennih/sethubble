@@ -1,22 +1,31 @@
 ---
-layout: layouts/home.njk
-title: Home
-date: 2016-01-01T00:00:00.000Z
-permalink: /
-eleventyNavigation:
-  key: Home
-  order: 0
+layout: layouts/base.njk
+permalink: /blog/index.html
 ---
-# Welcome
 
-This is a template for building a simple blog website with the [Eleventy static site generator](https://www.11ty.dev), with deployment to [Netlify](https://www.netlify.com).
+{# --- ШАПКА ГЛАВНОЙ СТРАНИЦЫ БЛОГА --- #}
+<div class="blog-header">
+  <h1>Блог SetHubble</h1>
+  <p>Все о вирусном партнерском маркетинге, автоматизации и росте вашего бизнеса.</p>
+</div>
 
-Includes [Decap CMS](https://www.decapcms.org) for WYSIWYG content editing, and [Netlify Forms](https://www.netlify.com/docs/form-handling) for processing your site's form data.
-
-[Log in to the Decap CMS dashboard](/admin/)
-
-For more info on installation and usage, view the [project repo]({{ pkg.repository.url }}) on GitHub.
-
-Or click the button below to deploy your own copy of this project to Netlify.
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/danurbanowicz/eleventy-netlify-boilerplate&stack=cms)
+{# --- СПИСОК ПОСТОВ В ВИДЕ ПЛИТОК --- #}
+<div class="post-list">
+  {# Eleventy автоматически находит все посты в папке "posts" #}
+  {# и предоставляет их здесь как "collections.posts" #}
+  {% for post in collections.posts | reverse %}
+    <a href="{{ post.url }}" class="post-card">
+      <article>
+        {# Если у поста есть картинка, можно ее добавить сюда #}
+        <div class="post-card-content">
+          <h2>{{ post.data.title }}</h2>
+          <p class="post-card-summary">{{ post.data.summary }}</p>
+          <div class="post-card-meta">
+            <time datetime="{{ post.date | machineDate }}">{{ post.date | readableDate }}</time>
+            <span class="read-more">Читать далее →</span>
+          </div>
+        </div>
+      </article>
+    </a>
+  {% endfor %}
+</div>
