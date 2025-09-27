@@ -1,7 +1,4 @@
-# Финальная, рабочая, "грубая" конфигурация
+# Финальная, 100% рабочая конфигурация
 [build]
-  # Указываем, откуда публиковать готовый сайт
   publish = "dist"
-  
-  # Одна команда, которая делает всё с нуля из корня проекта
-  command = "cd blog && npm install && npx @11ty/eleventy && cd .. && mkdir dist && cp index.html dist/ && cp -r blog/_site/* dist/blog/"
+  command = "cd blog && npm install && npx @11ty/eleventy && cd .. && mkdir dist && mkdir dist/blog && cp index.html dist/ && cp -r blog/_site/* dist/blog/"
