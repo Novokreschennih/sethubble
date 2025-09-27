@@ -1,4 +1,4 @@
 # Финальная, 100% рабочая конфигурация
 [build]
   publish = "dist"
-  command = "cd blog && npm install && npx @11ty/eleventy && cd .. && rm -rf dist && mkdir dist && cp index.html script.js _redirects dist/ && cp -r blog/_site/. dist/"
+  command = "cd blog && npm install && npx @11ty/eleventy && cd .. && rm -rf dist && mkdir dist && cp index.html script.js _redirects main-style.css dist/ && cp -r blog/_site/. dist/"
