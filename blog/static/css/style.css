@@ -1,0 +1,29 @@
+/* Стили для страницы поста */
+.post-content {
+  max-width: 720px; /* Оптимальная ширина для чтения */
+  margin: 40px auto; /* Центрируем блок с отступами */
+  padding: 0 20px;
+}
+
+.post-content h1, .post-content h2, .post-content h3 {
+  color: #1a202c; /* Более темный цвет для заголовков */
+  margin-top: 2em;
+  margin-bottom: 0.8em;
+}
+
+.post-content p {
+  font-size: 1.1rem; /* Слегка увеличим основной текст */
+  line-height: 1.7;  /* Увеличим межстрочное расстояние */
+  margin-bottom: 1.2em;
+}
+
+.post-content a {
+  color: #6366f1; /* Используем ваш фирменный цвет для ссылок */
+  text-decoration: underline;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Скруглим углы у картинок */
+}
