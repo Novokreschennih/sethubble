@@ -1,31 +1,40 @@
----
-layout: layouts/base.njk
-section: post
----
+{% extends "layouts/base.njk" %}
 
-<article>
-  <h1>{{ title }}</h1>
-  <p>
-    <small>
-      <time datetime="{{ page.date | machineDate }}">{{ page.date | readableDate }}</time> by <a href="/authors/{{ author | slug }}/">{{ author }}</a>
-    </small>
-  </p>
+{% block content %}
+  <article class="post-content">
+    
+    {# -- ЗАГОЛОВОК И МЕТА-ИНФОРМАЦИЯ -- #}
+    <header>
+      <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-4">{{ title }}</h1>
+      <p class="text-gray-600 text-base">
+        Опубликовано: <time datetime="{{ date | machineDate }}">{{ date | readableDate }}</time>
+        {% if author %}
+          | Автор: {{ author }}
+        {% endif %}
+      </p>
+      {% if tags %}
+        <div class="mt-4">
+          {% for tag in tags %}
+            <a href="/blog/tags/{{ tag }}" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#{{ tag }}</a>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </header>
 
-  {{ content | safe }}
+    <hr class="my-8">
 
-  {% if tags %}
-    <p>
-    {% for tag in tags %}
-      {%- if tag != "post" -%}
-        {% set tagUrl %}/tags/{{ tag }}/{% endset %}
-        <a href="{{ tagUrl | url }}" rel="tag">{{ tag }}</a>
-      {%- endif -%}
-    {% endfor %}
-    </p>
-  {% endif %}
+    {# -- ОСНОВНОЙ КОНТЕНТ СТАТЬИ -- #}
+    {{ content | safe }}
 
-</article>
+    <hr class="my-8">
 
-<nav>
-  <a href="{{ '/blog/' | url }}">← Blog index</a>
-</nav>
+    {# -- БЛОК "ПОДЕЛИТЬСЯ В СОЦСЕТЯХ" -- #}
+    <div class="share-buttons text-center">
+        <h3 class="font-bold mb-4">Понравилась статья? Поделитесь!</h3>
+        <a href="https://t.me/share/url?url={{ page.url | url | absoluteUrl(meta.url) }}&text={{ title }}" target="_blank" rel="noopener" class="share-button">Telegram</a>
+        <a href="https://vk.com/share.php?url={{ page.url | url | absoluteUrl(meta.url) }}" target="_blank" rel="noopener" class="share-button">VK</a>
+        <a href="https://twitter.com/intent/tweet?text={{ title }}&url={{ page.url | url | absoluteUrl(meta.url) }}" target="_blank" rel="noopener" class="share-button">Twitter</a>
+    </div>
+
+  </article>
+{% endblock %}
