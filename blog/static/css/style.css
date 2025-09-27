@@ -27,3 +27,22 @@
     height: auto;
     border-radius: 8px; /* Скруглим углы у картинок */
 }
+/* Стили для кнопок "Поделиться" */
+.share-buttons {
+  margin: 40px 0;
+}
+.share-button {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 50px;
+  background-color: #6366f1;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+.share-button:hover {
+  transform: translateY(-2px);
+  background-color: #4f46e5;
+}
