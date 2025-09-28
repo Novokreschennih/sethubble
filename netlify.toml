@@ -1,4 +1,6 @@
-# Финальная, 100% рабочая конфигурация
+# Финальная, "плоская" конфигурация
 [build]
   publish = "dist"
-  command = "cd blog && npm install && npx @11ty/eleventy && cd .. && rm -rf dist && mkdir dist && cp index.html script.js _redirects main-style.css dist/ && cp -r blog/_site/. dist/"
+  
+  # Команда, которая работает только из корня проекта
+  command = "npm install --prefix blog && npx @11ty/eleventy --input=blog --output=dist/blog && cp index.html script.js _redirects main-style.css dist/ && cp -r posts dist/blog/posts"
