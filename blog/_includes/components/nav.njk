@@ -1,10 +1,6 @@
-<nav>
-  <ul class="flex space-x-4">
-    <li><a href="https://sethubble.ru/" class="text-gray-600 hover:text-black">Главный сайт</a></li>
-    <li><a href="/blog/" class="text-gray-600 hover:text-black">Блог</a></li>
-    {# Если у вас есть страница "О нас" внутри блога #}
-    <li><a href="/blog/about/" class="text-gray-600 hover:text-black">О нас</a></li> 
-    {# Если у вас есть страница "Контакты" внутри блога #}
-    <li><a href="/blog/contact/" class="text-gray-600 hover:text-black">Контакты</a></li>
-  </ul>
-</nav>
+<header class="blog-header-nav">
+  <div class="container">
+    <a href="/blog/" class="blog-title-link">{{ metadata.title }}</a>
+    <a href="https://sethubble.ru/" class="nav-button">← Вернуться на главный сайт</a>
+  </div>
+</header>
