@@ -316,3 +316,63 @@ body::before {
   font-weight: 600;
   color: #6366f1; /* Ваш фирменный цвет */
 }
+/* === СТИЛИ ДЛЯ НОВОЙ НАВИГАЦИИ И ПОДВАЛА БЛОГА === */
+
+/* Контейнер для ограничения ширины */
+.container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* Стили для шапки блога (навигации) */
+.blog-header-nav {
+  padding: 20px 0;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: white;
+}
+.blog-header-nav .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.blog-title-link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #1a202c;
+}
+.nav-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background-color: #6366f1; /* Ваш фирменный цвет */
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+}
+.nav-button:hover {
+  transform: translateY(-2px);
+  background-color: #4f46e5;
+}
+
+/* Стили для подвала */
+.site-footer {
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 60px;
+  border-top: 1px solid #e2e8f0;
+  color: #718096;
+  font-size: 0.9rem;
+}
+.site-footer a {
+  color: #6366f1;
+  text-decoration: none;
+  font-weight: 500;
+}
+.site-footer a:hover {
+  text-decoration: underline;
+}
