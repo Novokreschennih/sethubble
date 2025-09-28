@@ -3,4 +3,4 @@
   publish = "dist"
   
   # Команда, которая работает только из корня проекта
-  command = "npm install --prefix blog && npx @11ty/eleventy --input=blog --output=dist/blog && cp index.html script.js _redirects main-style.css dist/ && cp -r posts dist/blog/posts"
+  command = "npm install --prefix blog && npx @11ty/eleventy --config=blog/.eleventy.js --input=blog --output=dist/blog && cp index.html script.js _redirects main-style.css dist/ && cp -r posts dist/blog/posts"
