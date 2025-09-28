@@ -1,11 +1,7 @@
+# Конфигурация для входа по Email + Пароль через Netlify Identity
 backend:
-  name: github
-  repo: Novokreschennih/sethubble # Ваш путь к репозиторию
-  branch: main # Ваша основная ветка
-  auth_type: "pkce"
-  app_id: Ov23liGMHtB4iY5tSyB0 # Ваш Client ID
-  base_url: https://api.decapcms.org # <-- КЛЮЧЕВОЕ ИЗМЕНЕНИЕ
-  
+  name: git-gateway # Используем "мост" от Netlify
+
 media_folder: "static/img"
 public_folder: "/img"
 
