@@ -12,12 +12,17 @@ permalink: /blog/index.html
 
 {# --- СПИСОК ПОСТОВ В ВИДЕ ПЛИТОК --- #}
 <div class="post-list">
-  {% for post in collections.posts | reverse %}
-    <a href="{{ post.url }}" class="post-card">
+  {# Эта строка ищет все статьи с тегом "post" #}
+  {% set postslist = collections.post | reverse %}
+  
+  {% for post in postslist %}
+    <a href="{{ post.url | url }}" class="post-card">
       <article>
         <div class="post-card-content">
           <h2>{{ post.data.title }}</h2>
-          <p class="post-card-summary">{{ post.data.summary }}</p>
+          {% if post.data.summary %}
+            <p class="post-card-summary">{{ post.data.summary }}</p>
+          {% endif %}
           <div class="post-card-meta">
             <time datetime="{{ post.date | machineDate }}">{{ post.date | readableDate }}</time>
             <span class="read-more">Читать далее →</span>
