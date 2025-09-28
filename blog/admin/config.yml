@@ -2,8 +2,11 @@
 
 # The backend option specifies how to access the content for your site
 backend:
-  name: git-gateway
-  branch: main # The branch to update (optional; defaults to master)
+  name: github # <-- Указываем, что используем GitHub
+  repo: Novokreschennih/sethubble # <-- Замените на ВАШ путь: логин/репозиторий
+  branch: main # <-- Ваша основная ветка
+  auth_type: "pkce"
+  app_id: Ov23liGMHtB4iY5tSyB0 # <-- ВСТАВЬТЕ СЮДА ВАШ Client ID
 
 # Uncomment below to enable drafts https://www.decapcms.org/docs/add-to-your-site/#editorial-workflow
 # publish_mode: editorial_workflow
