@@ -1,6 +1,8 @@
 # Конфигурация для входа по Email + Пароль через Netlify Identity
 backend:
   name: git-gateway # Используем "мост" от Netlify
+  repo: Novokreschennih/sethubble # <-- Убедитесь, что это правильно
+  branch: main
 
 media_folder: "static/img"
 public_folder: "/img"
