@@ -191,15 +191,16 @@ body::before {
 }
 /* === ЕДИНЫЕ СТИЛИ ДЛЯ СТРАНИЦ БЛОГА === */
 
-/* --- 1. Общие настройки --- */
-/* Мы не меняем фон body, он остается темным. Но мы создаем светлую "подложку" для контента */
+/* === ЕДИНЫЕ СТИЛИ ДЛЯ СТРАНИЦ БЛОГА === */
+
+/* --- 1. Создаем светлую "подложку" для контента --- */
 .blog-content-wrapper {
   background-color: white;
   color: #1a202c; /* Темный текст на светлом фоне */
-  padding-bottom: 60px; /* Отступ снизу до подвала */
 }
 
-/* --- 2. Шапка навигации (адаптирована) --- */
+/* --- 2. Шапка навигации --- */
+/* Эти стили применятся к вашему nav.njk */
 .blog-header-nav {
   padding: 15px 0;
   border-bottom: 1px solid #e2e8f0;
@@ -209,31 +210,38 @@ body::before {
   z-index: 10;
 }
 .blog-title-link {
-  color: #1a202c; /* Делаем текст темным */
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: #1a202c; /* Темный текст на белом фоне */
 }
 .nav-button {
   background-color: #f1f5f9;
   color: #475569;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 50px;
+  text-decoration: none;
+  transition: all 0.2s ease-in-out;
 }
 .nav-button:hover {
   background-color: #e2e8f0;
   color: #1e293b;
-  transform: none; /* Убираем лишние эффекты */
+  transform: none;
 }
 
-/* --- 3. Главный заголовок блога (адаптирован) --- */
+/* --- 3. Главный заголовок блога --- */
 .blog-header {
   text-align: center;
   padding: 80px 20px;
-  border-bottom: 1px solid #e2e8f0;
 }
 .blog-header h1 {
   font-size: 3.5rem;
   font-weight: 900;
-  color: #0f172a; /* Ваш фирменный темный цвет */
-  background: none; /* Убираем градиент с главной */
-  -webkit-text-fill-color: initial; /* Возвращаем обычный цвет */
-  animation: none; /* Отключаем анимацию */
+  color: #0f172a;
+  background: none; /* Убираем конфликтующие стили с лендинга */
+  -webkit-text-fill-color: initial;
+  animation: none;
 }
 .blog-header p {
   font-size: 1.25rem;
@@ -242,7 +250,7 @@ body::before {
   margin: 15px auto 0;
 }
 
-/* --- 4. Сетка и плитки постов (адаптированы) --- */
+/* --- 4. Сетка и плитки постов --- */
 .post-list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -254,20 +262,24 @@ body::before {
 .post-card {
   background-color: white;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+  transition: all 0.3s ease-in-out;
 }
 .post-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1);
 }
 .post-card-content { padding: 25px; }
-.post-card h2 { color: #1e293b; }
+.post-card h2 { color: #1e293b; font-size: 1.5rem; font-weight: 700; }
 .post-card-summary { color: #475569; }
-.post-card-meta { color: #64748b; }
-.read-more { color: var(--primary); }
+.post-card-meta { color: #64748b; font-size: 0.9rem; }
+.read-more { color: var(--primary); font-weight: 600; }
+
 
 /* --- 5. Подвал блога --- */
-/* Подвал остается темным, как на главной, для единства */
+/* Подвал остается темным для единства с лендингом */
 .site-footer {
   text-align: center;
   padding: 40px 20px;
@@ -275,6 +287,5 @@ body::before {
   font-size: 0.9rem;
   border-top: 1px solid var(--border);
 }
-.site-footer a {
-  color: var(--primary);
-}
+.site-footer a { color: var(--primary); text-decoration: none; }
+.site-footer a:hover { text-decoration: underline; }
