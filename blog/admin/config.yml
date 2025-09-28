@@ -1,49 +1,32 @@
-# Decap CMS Configuration File
-
-# The backend option specifies how to access the content for your site
 backend:
-  name: github # <-- Указываем, что используем GitHub
-  repo: Novokreschennih/sethubble # <-- Замените на ВАШ путь: логин/репозиторий
-  branch: main # <-- Ваша основная ветка
+  name: github
+  repo: Novokreschennih/sethubble # Ваш путь к репозиторию
+  branch: main # Ваша основная ветка
   auth_type: "pkce"
-  app_id: Ov23liGMHtB4iY5tSyB0 # <-- ВСТАВЬТЕ СЮДА ВАШ Client ID
-
-# Uncomment below to enable drafts https://www.decapcms.org/docs/add-to-your-site/#editorial-workflow
-# publish_mode: editorial_workflow
-
-# Uncomment below to enable a link to your published site in the header bar of Decap CMS
-# site_url: https://eleventy-netlify-boilerplate.netlify.app/
-
-media_folder: "static/img" # Media files will be stored in the repo under images/uploads
+  app_id: Ov23liGMHtB4iY5tSyB0 # Ваш Client ID
+  base_url: https://api.decapcms.org # <-- КЛЮЧЕВОЕ ИЗМЕНЕНИЕ
+  
+media_folder: "static/img"
+public_folder: "/img"
 
 collections:
-  # Our blog posts
-  - name: "blog" # Used in routes, e.g., /admin/collections/blog
-    label: "Post" # Used in the UI
-    folder: "posts" # The path to the folder where the documents are stored
-    create: true # Allow users to create new documents in this collection
-    slug: "{{slug}}" # Filename template, e.g., YYYY-MM-DD-title.md
-    fields: # The fields for each document, usually in front matter
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Author", name: "author", widget: "string", default: "Anonymous" }
-      - { label: "Summary", name: "summary", widget: "text" }
-      - { label: "Tags", name: "tags", widget: "list", default: ["post"] }
-      - { label: "Body", name: "body", widget: "markdown" }
-  # Our pages e.g. About
-  - name: "pages"
-    label: "Page"
-    folder: "pages"
-    create: false # Change to true to allow editors to create new pages
-    slug: "{{slug}}"
+  - name: "posts"
+    label: "Статьи"
+    folder: "posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Permalink", name: "permalink", widget: "string" }
-      - label: "Navigation" # https://www.11ty.dev/docs/plugins/navigation/
-        name: "eleventyNavigation"
-        widget: "object"
-        fields:
-          - { label: "Key", name: "key", widget: "string" }
-          - { label: "Order", name: "order", widget: "number", default: 0 }
-      - { label: "Body", name: "body", widget: "markdown" }
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Дата публикации", name: "date", widget: "datetime" }
+      - { label: "Автор", name: "author", widget: "string", required: false }
+      - { label: "Краткое описание (для плитки)", name: "summary", widget: "text" }
+      - { label: "Теги (обязательно добавьте 'post')", name: "tags", widget: "list" }
+      - { label: "Содержимое статьи", name: "body", widget: "markdown" }
+  
+  - name: "pages"
+    label: "Страницы"
+    folder: "pages"
+    create: false
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Содержимое", name: "body", widget: "markdown" }
