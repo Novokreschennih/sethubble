@@ -6,6 +6,8 @@ module.exports = function(eleventyConfig) {
 
   // 2. Регистрируем плагин в Eleventy
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
+  // Шорткод для автоматической подстановки текущего года
+  eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
   // Копируем статические файлы
   eleventyConfig.addPassthroughCopy("admin");
