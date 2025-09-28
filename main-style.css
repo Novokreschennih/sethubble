@@ -376,3 +376,122 @@ body::before {
 .site-footer a:hover {
   text-decoration: underline;
 }
+/* === ФИНАЛЬНЫЕ СТИЛИ ДЛЯ БЛОГА (ТЕМНАЯ ТЕМА) === */
+
+/* --- 1. Общие настройки для всего блога --- */
+/* Мы "обнуляем" стили блога, чтобы на них не влиял лендинг */
+body.blog-page {
+  background-color: #f8fafc; /* Светлый фон для контраста */
+  color: #1a202c; /* Темный текст по умолчанию */
+}
+
+/* --- 2. Шапка навигации --- */
+.blog-header-nav {
+  padding: 15px 0;
+  border-bottom: 1px solid #e2e8f0;
+  background-color: white; /* Чистый белый фон */
+}
+/* Мы уже настроили .container, .blog-title-link, .nav-button - их можно оставить как есть */
+/* Но давайте сделаем кнопку возврата чуть заметнее на белом фоне */
+.nav-button {
+  background-color: #f1f5f9; /* Светло-серый фон */
+  color: #475569; /* Темно-серый текст */
+}
+.nav-button:hover {
+  background-color: #e2e8f0;
+  color: #1e293b;
+}
+
+
+/* --- 3. Главный заголовок блога --- */
+.blog-header {
+  text-align: center;
+  padding: 80px 20px;
+  background-color: white; /* Белый фон */
+  border-bottom: 1px solid #e2e8f0;
+}
+.blog-header h1 {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #0f172a; /* Ваш темно-синий цвет с лендинга */
+  letter-spacing: -0.025em;
+}
+.blog-header p {
+  font-size: 1.25rem;
+  color: #64748b; /* Мягкий серый */
+  max-width: 600px;
+  margin: 15px auto 0;
+}
+
+
+/* --- 4. Сетка и плитки постов (самое главное!) --- */
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.post-card {
+  display: block;
+  background-color: white; /* Белый фон для карточек */
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  text-decoration: none;
+  color: #1a202c;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.post-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.post-card-content {
+  padding: 25px;
+}
+    
+.post-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 10px;
+  color: #1e293b;
+}
+
+.post-card-summary {
+  color: #475569;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.post-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+    
+.read-more {
+  font-weight: 600;
+  color: #6366f1; /* Ваш фирменный фиолетовый */
+}
+
+/* --- 5. Подвал блога --- */
+.site-footer {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8fafc; /* Светло-серый фон */
+  border-top: 1px solid #e2e8f0;
+  color: #64748b;
+  font-size: 0.9rem;
+}
