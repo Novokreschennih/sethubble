@@ -3,33 +3,25 @@ const CleanCSS = require("clean-css");
 const eleventyNavigationPlugin = require("@11ty/eleventy-navigation");
 
 module.exports = function(eleventyConfig) {
-  // Регистрируем плагин навигации
   eleventyConfig.addPlugin(eleventyNavigationPlugin);
-  
-  // Шорткод для автоматической подстановки текущего года
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
-  // Копируем важные папки
+  // Копируем папки admin и static/img изнутри "blog" в итоговую сборку
   eleventyConfig.addPassthroughCopy("admin");
   eleventyConfig.addPassthroughCopy("static/img");
 
   // Фильтры
-  eleventyConfig.addFilter("readableDate", dateObj => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat("dd LLL yyyy");
-  });
-  eleventyConfig.addFilter('machineDate', (dateObj) => {
-    return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-MM-dd');
-  });
-  eleventyConfig.addFilter("cssmin", function(code) {
-    return new CleanCSS({}).minify(code).styles;
-  });
+  eleventyConfig.addFilter("readableDate", dateObj => { /*...*/ }); // Оставьте ваш код фильтров
+  eleventyConfig.addFilter('machineDate', (dateObj) => { /*...*/ });
+  eleventyConfig.addFilter("cssmin", function(code) { /*...*/ });
 
-  // Указываем Eleventy, где брать исходники
+  // Возвращаем правильные пути!
   return {
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     dir: {
-      
+      input: ".", // Искать файлы в текущей папке (blog)
+      output: "_site" // Складывать результат в _site
     }
   };
 };
