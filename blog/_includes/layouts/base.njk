@@ -3,19 +3,16 @@
 
 	{% include "components/head.njk" %}
 
-	<body  class="blog-page">
+	<body>
+  {% include "components/nav.njk" %}
 
-		<header>
-			
-			{% include "components/nav.njk" %}
-		</header>
+  <div class="blog-content-wrapper">
+    <main>
+      {{ content | safe }}
+    </main>
+  </div>
 
-		<main>
-			{{ content | safe }}
-		</main>
-
-		{% include "components/footer.njk" %}
-
-	</body>
+  {% include "components/footer.njk" %}
+</body>
 
 </html>
