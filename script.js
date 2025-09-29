@@ -11,6 +11,7 @@ function throttle(func, limit) {
         }
     }
 }
+
 document.addEventListener('DOMContentLoaded', function() {
     // --- WOW Effects (Aurora, Scroll Animation) ---
     document.body.addEventListener('mousemove', e => {
@@ -97,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
         price: document.getElementById('price'), initialPartners: document.getElementById('initialPartners'), partnerDuplication: document.getElementById('partnerDuplication'),
         priceValue: document.getElementById('priceValue'), initialPartnersValue: document.getElementById('initialPartnersValue'), partnerDuplicationValue: document.getElementById('partnerDuplicationValue'),
         classic: { levels: document.getElementById('classicLevels'), levelsValue: document.getElementById('classicLevelsValue'), l1: document.getElementById('classicL1'), l2: document.getElementById('classicL2'), l1Row: document.getElementById('classicL1Row'), l2Row: document.getElementById('classicL2Row'), subtitle: document.getElementById('classicSubtitle'), partners: document.getElementById('classicTotalPartners'), income: document.getElementById('classicAuthorIncome'), },
-        sethubble: { levels: document.getElementById('sethubbleLevels'), levelsValue: document.getElementById('sethubbleLevelsValue'), l1: document.getElementById('sethubbleL1'), l2plus: document.getElementById('sethubbleL2plus'), l1Row: document.getElementById('sethubbleL1Row'), l2plusRow: document.getElementById('sethubbleL2plusRow'), warning: document.getElementById('sethubbleWarning'), subtitle: document.getElementById('sethubbleSubtitle'), partners: document.getElementById('sethubbleTotalPartners'), income: document.getElementById('sethubbleAuthorIncome'), },
+        sethubble: { levels: document.getElementById('sethubbleLevels'), levelsValue: document.getElementById('sethubbleLevelsValue'), l1: document.getElementById('sethubbleL1'), l2plus: document.getElementById('sethubbleL2plus'), l1Row: document.getElementById('sethubbleL1Row'), l2plusRow: document.getElementById('sethubbleL2plusRow'), warning: document.getElementById('sethubbleWarning'), subtitle: document.getElementById('sethubbleSubtitle'), l2plusLabel: document.getElementById('sethubbleL2plusLabel'), partners: document.getElementById('sethubbleTotalPartners'), income: document.getElementById('sethubbleAuthorIncome'), },
         conclusionText: document.getElementById('conclusionText'), chartCtx: document.getElementById('salesChart').getContext('2d'),
     };
     let salesChartInstance = null;
@@ -126,7 +127,14 @@ document.addEventListener('DOMContentLoaded', function() {
         let classicSubtitle = config.classic.levels > 0 ? `${config.classic.levels} уровня` : 'Нет партнерки';
         if (config.classic.levels > 0) { const comms = config.classic.commissions.slice(0, config.classic.levels).join('% + ') + '%'; classicSubtitle = `${config.classic.levels} ${config.classic.levels === 1 ? 'уровень' : 'уровня'}: ${comms}`; }
         elements.classic.subtitle.textContent = classicSubtitle;
-        elements.sethubble.levelsValue.textContent = config.sethubble.levels; elements.sethubble.l1Row.classList.toggle('hidden', config.sethubble.levels < 1); elements.sethubble.l2plusRow.classList.toggle('hidden', config.sethubble.levels < 2);
+        elements.sethubble.levelsValue.textContent = config.sethubble.levels;
+        elements.sethubble.l1Row.classList.toggle('hidden', config.sethubble.levels < 1);
+        elements.sethubble.l2plusRow.classList.toggle('hidden', config.sethubble.levels < 2);
+        // === ИЗМЕНЕНИЕ ЗДЕСЬ ===
+        if (config.sethubble.levels > 1 && elements.sethubble.l2plusLabel) {
+            elements.sethubble.l2plusLabel.textContent = `Уровни 2-${config.sethubble.levels}, %`;
+        }
+        // === КОНЕЦ ИЗМЕНЕНИЯ ===
         let sethubbleSubtitle = config.sethubble.levels > 0 ? `${config.sethubble.levels} уровней` : 'Нет партнерки';
         if (config.sethubble.levels > 0) { let commsStr = `${config.sethubble.commissions.l1}%`; if (config.sethubble.levels > 1) { commsStr += ` + ${config.sethubble.levels - 1}x${config.sethubble.commissions.l2plus}%`; } sethubbleSubtitle = `${config.sethubble.levels} уровней: ${commsStr}`; }
         elements.sethubble.subtitle.textContent = sethubbleSubtitle;
@@ -158,7 +166,9 @@ document.addEventListener('DOMContentLoaded', function() {
         config.classic.levels = parseInt(elements.classic.levels.value); config.classic.commissions[0] = parseFloat(elements.classic.l1.value) || 0; config.classic.commissions[1] = parseFloat(elements.classic.l2.value) || 0;
         const changedInput = this.dataset.model === 'sethubble' ? this.id.replace('sethubble', '').toLowerCase() : null;
         validateSetHubble(changedInput);
-        config.sethubble.levels = parseInt(elements.sethubble.levels.value); config.sethubble.commissions.l1 = parseFloat(elements.sethubble.l1.value) || 0; config.sethubble.commissions.l2plus = parseFloat(elements.sethubble.l2plus.value) || 0;
+        config.sethubble.levels = parseInt(elements.sethubble.levels.value);
+        config.sethubble.commissions.l1 = parseFloat(elements.sethubble.l1.value) || 0;
+        config.sethubble.commissions.l2plus = parseFloat(elements.sethubble.l2plus.value) || 0;
         updateUI(); render();
     }
     const allInputs = document.querySelectorAll('.simulator input');
