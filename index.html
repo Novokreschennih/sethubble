@@ -206,20 +206,62 @@ body::before {
 }
     </style>
         
-    <!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104313731', 'ym');
-
-    ym(104313731, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img src="https://mc.yandex.ru/watch/104313731" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-<!-- /Yandex.Metrika counter -->
+  
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <!-- ================== ДОБАВЛЕНО: Микроразметка Schema.org ================== -->
+    <!-- Этот код невидимо для пользователя объясняет поисковикам суть вашей страницы, -->
+    <!-- что может привести к улучшенным, расширенным сниппетам в выдаче. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "SoftwareApplication",
+          "name": "SetHubble",
+          "applicationCategory": "BusinessApplication",
+          "operatingSystem": "Web",
+          "abstract": "Конструктор для создания многоуровневых вирусных партнерских программ с API и крипто-платежами.",
+          "description": "SetHubble позволяет бизнесу создавать собственные партнерские сети до 10 уровней в глубину с мгновенными выплатами в криптовалюте. Платформа полностью автоматизирована через API и подходит для авторов курсов, сетевых лидеров и маркетологов.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "description": "Бесплатный тариф с комиссией при выводе средств."
+          }
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Сколько это стоит?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "На бесплатном тарифе вы не платите ничего. Сетхаббл берет только небольшой процент (от 1% до 5% в зависимости от тарифа) при выводе средств. Нет никаких скрытых платежей, абонентской платы или комиссий за установку."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Как быстро я получу деньги?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Мгновенно. Вы можете настроить автоматический вывод, и тогда деньги за продажу будут сразу поступать на ваш личный крипто-кошелек, даже не заходя в систему SetHubble."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Это не похоже на пирамиду?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Нет. В пирамидах доход генерируется за счет взносов новых участников. В Сетхаббл доход генерируется исключительно от реальных продаж товаров и услуг."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <!-- ================== КОНЕЦ БЛОКА Schema.org ================== -->
 </head>
 <body>
     
@@ -480,11 +522,24 @@ body::before {
     <!-- Подключаем файл со скриптами -->
     <script src="./script.js" defer></script>
     <!-- Скрипт-перехватчик для Netlify Identity -->
-<script>
-  if (window.location.hash.includes('invite_token') || window.location.hash.includes('recovery_token')) {
-    window.location.href = "/admin/" + window.location.hash;
-  }
-</script>
+    <script>
+      if (window.location.hash.includes('invite_token') || window.location.hash.includes('recovery_token')) {
+        window.location.href = "/admin/" + window.location.hash;
+      }
+    </script>
+      <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104313731', 'ym');
+    
+        ym(104313731, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/104313731" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->    
 </body>
 </html>
 
