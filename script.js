@@ -130,22 +130,25 @@ document.addEventListener('DOMContentLoaded', function() {
         elements.sethubble.levelsValue.textContent = config.sethubble.levels;
         elements.sethubble.l1Row.classList.toggle('hidden', config.sethubble.levels < 1);
         elements.sethubble.l2plusRow.classList.toggle('hidden', config.sethubble.levels < 2);
-        // === ИЗМЕНЕНИЕ ЗДЕСЬ ===
         if (config.sethubble.levels > 1 && elements.sethubble.l2plusLabel) {
             elements.sethubble.l2plusLabel.textContent = `Уровни 2-${config.sethubble.levels}, %`;
         }
-        // === КОНЕЦ ИЗМЕНЕНИЯ ===
         let sethubbleSubtitle = config.sethubble.levels > 0 ? `${config.sethubble.levels} уровней` : 'Нет партнерки';
         if (config.sethubble.levels > 0) { let commsStr = `${config.sethubble.commissions.l1}%`; if (config.sethubble.levels > 1) { commsStr += ` + ${config.sethubble.levels - 1}x${config.sethubble.commissions.l2plus}%`; } sethubbleSubtitle = `${config.sethubble.levels} уровней: ${commsStr}`; }
         elements.sethubble.subtitle.textContent = sethubbleSubtitle;
     }
     function validateSetHubble(changedInput) {
         const { levels } = config.sethubble; if (levels < 1) return;
-        let l1 = parseFloat(elements.sethubble.l1.value) || 0; let l2plus = parseFloat(elements.sethubble.l2plus.value) || 0;
+        let l1 = parseInt(elements.sethubble.l1.value) || 0; let l2plus = parseInt(elements.sethubble.l2plus.value) || 0;
         const totalCommission = levels > 1 ? l1 + (levels - 1) * l2plus : l1;
         if (totalCommission > MAX_COMMISSION_SUM) {
-            if (changedInput === 'l1') { l1 = levels > 1 ? MAX_COMMISSION_SUM - (levels - 1) * l2plus : MAX_COMMISSION_SUM; elements.sethubble.l1.value = Math.max(0, l1.toFixed(1)); }
-            else { l2plus = levels > 1 ? (MAX_COMMISSION_SUM - l1) / (levels - 1) : 0; elements.sethubble.l2plus.value = Math.max(0, l2plus.toFixed(1)); }
+            if (changedInput === 'l1') {
+                l1 = levels > 1 ? MAX_COMMISSION_SUM - (levels - 1) * l2plus : MAX_COMMISSION_SUM;
+                elements.sethubble.l1.value = Math.max(0, l1);
+            } else {
+                l2plus = levels > 1 ? Math.floor((MAX_COMMISSION_SUM - l1) / (levels - 1)) : 0;
+                elements.sethubble.l2plus.value = Math.max(0, l2plus);
+            }
             elements.sethubble.warning.textContent = `Сумма комиссий не может превышать ${MAX_COMMISSION_SUM}%, чтобы гарантировать ваш доход.`;
         } else { elements.sethubble.warning.textContent = ''; }
     }
@@ -163,12 +166,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     function handleInputChange() {
         config.general.price = parseFloat(elements.price.value); config.general.partners = parseInt(elements.initialPartners.value); config.general.sales = parseInt(elements.partnerDuplication.value);
-        config.classic.levels = parseInt(elements.classic.levels.value); config.classic.commissions[0] = parseFloat(elements.classic.l1.value) || 0; config.classic.commissions[1] = parseFloat(elements.classic.l2.value) || 0;
+        config.classic.levels = parseInt(elements.classic.levels.value);
+        config.classic.commissions[0] = parseInt(elements.classic.l1.value) || 0;
+        config.classic.commissions[1] = parseInt(elements.classic.l2.value) || 0;
         const changedInput = this.dataset.model === 'sethubble' ? this.id.replace('sethubble', '').toLowerCase() : null;
         validateSetHubble(changedInput);
         config.sethubble.levels = parseInt(elements.sethubble.levels.value);
-        config.sethubble.commissions.l1 = parseFloat(elements.sethubble.l1.value) || 0;
-        config.sethubble.commissions.l2plus = parseFloat(elements.sethubble.l2plus.value) || 0;
+        config.sethubble.commissions.l1 = parseInt(elements.sethubble.l1.value) || 0;
+        config.sethubble.commissions.l2plus = parseInt(elements.sethubble.l2plus.value) || 0;
         updateUI(); render();
     }
     const allInputs = document.querySelectorAll('.simulator input');
