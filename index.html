@@ -204,6 +204,102 @@
             .simulator { padding: 30px 20px; }
             .grid-2 { grid-template-columns: 1fr; }
         }
+        /* --- СТИЛИ ДЛЯ НОВОГО БЛОКА ПАРТНЕРОВ --- */
+        .partner-block {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 60px;
+            border-radius: 30px;
+            border: 1px solid var(--border);
+        }
+
+        .partner-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--neon);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .partner-text h3 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--light);
+            margin-bottom: 30px;
+        }
+
+        .partner-text p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+
+        .partner-text ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 40px;
+        }
+
+        .partner-text ul li {
+            font-size: 1.1rem;
+            color: var(--light);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .partner-text .cta-button {
+            background: linear-gradient(45deg, var(--neon), var(--primary));
+            box-shadow: 0 10px 30px rgba(0, 247, 255, 0.2);
+        }
+
+        /* Анимация для SVG */
+        .partner-visual svg .lines line {
+            stroke: var(--border);
+            stroke-width: 1;
+        }
+        .partner-visual svg .nodes circle {
+            fill: var(--card-bg);
+            stroke: var(--neon);
+            stroke-width: 2;
+            animation: pulse 4s infinite ease-in-out;
+        }
+        .partner-visual svg .central-node {
+            fill: url(#glow);
+            stroke-width: 3;
+            animation-duration: 3s;
+        }
+        .partner-visual svg .nodes circle:nth-child(2) { animation-delay: 0.5s; }
+        .partner-visual svg .nodes circle:nth-child(3) { animation-delay: 1s; }
+        .partner-visual svg .nodes circle:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes pulse {
+            0%, 100% { r: 10; opacity: 1; }
+            50% { r: 12; opacity: 0.7; }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 992px) {
+            .partner-block {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px;
+            }
+            .partner-visual {
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            .partner-text {
+                text-align: center;
+            }
+            .partner-text ul {
+                text-align: left;
+                display: inline-block;
+            }
+        }
     </style>
         
   
@@ -344,6 +440,58 @@
                     </div>
                 </div>
             </section>
+
+            <!-- ===================================================================== -->
+            <!-- ================== НОВЫЙ БЛОК ДЛЯ ПАРТНЕРОВ ================== -->
+            <!-- ===================================================================== -->
+            <section class="section">
+                <div class="partner-block animate-on-scroll">
+                    <div class="partner-visual">
+                        <!-- Это SVG-анимация, изображающая рост сети -->
+                        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <radialGradient id="glow" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                                    <stop offset="0%" style="stop-color: var(--neon); stop-opacity: 0.7"/>
+                                    <stop offset="100%" style="stop-color: var(--neon); stop-opacity: 0"/>
+                                </radialGradient>
+                            </defs>
+                            <g class="lines">
+                                <line x1="200" y1="150" x2="100" y2="80"/>
+                                <line x1="200" y1="150" x2="120" y2="220"/>
+                                <line x1="200" y1="150" x2="280" y2="230"/>
+                                <line x1="200" y1="150" x2="300" y2="90"/>
+                                <line x1="100" y1="80" x2="50" y2="40"/>
+                                <line x1="100" y1="80" x2="70" y2="150"/>
+                                <line x1="300" y1="90" x2="350" y2="140"/>
+                            </g>
+                            <g class="nodes">
+                                <circle cx="200" cy="150" r="20" class="central-node"/>
+                                <circle cx="100" cy="80" r="10"/>
+                                <circle cx="120" cy="220" r="10"/>
+                                <circle cx="280" cy="230" r="10"/>
+                                <circle cx="300" cy="90" r="10"/>
+                                <circle cx="50" cy="40" r="7"/>
+                                <circle cx="70" cy="150" r="7"/>
+                                <circle cx="350" cy="140" r="7"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="partner-text">
+                        <h2>Нет Своего Продукта?</h2>
+                        <h3>Станьте партнером экосистемы — это бесплатно!</h3>
+                        <p>Вам не нужно быть автором, чтобы зарабатывать с SetHubble. Вы можете построить мощную бизнес-структуру, просто делясь возможностями платформы:</p>
+                        <ul>
+                            <li>✅ <b>Приглашайте людей</b> по своей партнерской ссылке.</li>
+                            <li>✅ <b>Стройте структуру:</b> Все, кого они пригласят, тоже становятся частью вашей сети.</li>
+                            <li>✅ <b>Получайте пассивный доход,</b> когда любой человек в вашей структуре покупает платный тариф или начинает продавать свои продукты.</li>
+                        </ul>
+                        <a href="https://sethubble.com/ru/p_qdr" target="_blank" class="cta-button">Стать Партнёром Бесплатно</a>
+                    </div>
+                </div>
+            </section>
+            <!-- ===================================================================== -->
+            <!-- ================== КОНЕЦ НОВОГО БЛОКА ================== -->
+            <!-- ===================================================================== -->
 
             <section class="section">
                 <h2 class="section-title animate-on-scroll">Ваше "Секретное Оружие"</h2>
